@@ -1,0 +1,3 @@
+# core
+
+Elements centraux genre theme, mixins etc...
