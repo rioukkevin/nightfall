@@ -2,10 +2,13 @@ import React from 'react';
 
 // Navigation
 import Router from './router/Router'
+import { Provider as PaperProvider } from 'react-native-paper';
 
 const App = () => {
   return (
-    <Router />
+    <PaperProvider>
+      <Router />
+    </PaperProvider>
   );
 }
 
