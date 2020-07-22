@@ -1,8 +1,8 @@
-interface EstablishmentType {
+export default interface EstablishmentType {
     /**
      * Type name
      */
-    name: string;
+    name: number;
     /**
      * Color for the establishment
      */
@@ -12,5 +12,3 @@ interface EstablishmentType {
      */
     id: string;
 }
-
-export default EstablishmentType;

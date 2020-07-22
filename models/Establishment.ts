@@ -3,6 +3,10 @@ import EstablishmentType from "./EstablishmentType";
 
 interface Establishment {
     /**
+     * Unique identifier
+     */
+    id: number;
+    /**
      * Name
      */
     name: string;
@@ -14,10 +18,6 @@ interface Establishment {
      * Type of the establishment
      */
     type: EstablishmentType;
-    /**
-     * Unique identifier
-     */
-    id: string;
 }
 
 export default Establishment;

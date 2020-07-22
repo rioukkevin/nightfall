@@ -5,14 +5,7 @@ import Establishment from "../models/Establishment";
 import { getEstablishments } from "../services/establishments.service";
 import getMarkerFromAddress from "../utils/getMarkerFromAddress";
 
-/**
- * Props of the @see MapScreen component
- */
-interface MapProps {
-    establishments: Establishment[];
-}
-
-const MapScreen: FunctionComponent<MapProps> = () => {
+const MapScreen: FunctionComponent = () => {
     //Load establishments
     //TODO: Get it from props or cache
     useEffect(() => {

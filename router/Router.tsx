@@ -1,20 +1,14 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Items from './Items'
+import { NavigationContainer } from "@react-navigation/native";
+import TabNavigator from "./TabNavigator";
+import React from "react";
 
-const Tab = createBottomTabNavigator();
-const list = Items(Tab);
-
-const Router = () => {
-  return (
+/**
+ * Application router
+ */
+const Router = () => (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Home">
-        {list}
-      </Tab.Navigator>
+        <TabNavigator></TabNavigator>
     </NavigationContainer>
-  );
-}
+);
 
-export default Router
+export default Router;
