@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const HomeScreen = () => {
+const ShareScreen = () => {
   return (
     <View style={styles.view}>
-      <Text>Home</Text>
+      <Text>Share</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  view: { 
-    flex: 1, 
-    alignItems: 'center', 
+  view: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center'
   },
 });
 
-export default HomeScreen
+export default ShareScreen
