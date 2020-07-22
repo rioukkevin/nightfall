@@ -1,9 +1,13 @@
 import * as React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Share} from 'react-native';
+// @ts-ignore
+import {ShareDialog, ShareLinkContent} from 'react-native-fbsdk';
+import * as Facebook from 'expo-facebook';
 
 // @ts-ignore
 import {getFacebookDatas, getTwitterDatas, getInstagramDatas} from "../services/ShareService";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Surface} from "react-native-paper";
 
 class ShareScreen extends React.Component<any, any> {
 
@@ -21,8 +25,43 @@ class ShareScreen extends React.Component<any, any> {
     }
 
     shareFacebook = () => {
-        console.log("shareFacebook");
 
+        console.log("shareFacebook");
+        /*
+        const shareLinkContent: ShareLinkContent = {
+            contentType: 'link',
+            contentUrl: "https://facebook.com",
+            contentDescription: 'Facebook sharing is easy!',
+        };
+
+        ShareDialog.setMode('webview');
+
+
+        ShareDialog.canShow(shareLinkContent)
+            .then(
+                function(canShow: any) {
+                    console.log("canShow");
+                    console.log(canShow);
+                    if (canShow) {
+                        return ShareDialog.show(shareLinkContent);
+                    }
+                }
+            )
+            .then(
+                function(result: any) {
+                    if (result.isCancelled) {
+                        alert('Share operation was cancelled');
+                    } else {
+                        alert('Share was successful with postId: '
+                            + result.postId);
+                    }
+                },
+                function(error: any) {
+                    alert('Share failed with error: ' + error.message);
+                }
+            );
+
+         */
     };
     shareTwitter = () => {
         console.log("shareTwitter");
@@ -46,26 +85,26 @@ class ShareScreen extends React.Component<any, any> {
                 <Text style={styles.title}>MONPSEUDO</Text>
                 <Text style={styles.subTitle}>Partage ton expérience sur les réseaux</Text>
 
-                <View onTouchEnd={this.shareFacebook} style={styles.item}>
-                    <View style={styles.icon}>
+                <Surface onTouchEnd={this.shareFacebook} style={styles.item}>
+                    <Surface style={styles.icon}>
                         <MaterialCommunityIcons size={50} name="facebook" />
-                    </View>
+                    </Surface>
                     {infoFacebook}
-                </View>
+                </Surface>
 
-                <View onTouchEnd={this.shareTwitter} style={styles.item}>
-                    <View style={styles.icon}>
+                <Surface onTouchEnd={this.shareTwitter} style={styles.item}>
+                    <Surface style={styles.icon}>
                         <MaterialCommunityIcons size={50} name="twitter"/>
-                    </View>
+                    </Surface>
                     {infoTwitter}
 
-                </View>
-                <View onTouchEnd={this.shareInstagram} style={styles.item}>
-                    <View style={styles.icon}>
+                </Surface>
+                <Surface onTouchEnd={this.shareInstagram} style={styles.item}>
+                    <Surface style={styles.icon}>
                         <MaterialCommunityIcons size={50} name="instagram"/>
-                    </View>
+                    </Surface>
                     {infoInstagram}
-                </View>
+                </Surface>
 
             </View>
         );
@@ -79,6 +118,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     title: {
+        maxWidth: "90%",
         fontSize: 35,
         fontWeight: "bold",
         marginTop: "20%",
@@ -87,7 +127,6 @@ const styles = StyleSheet.create({
     subTitle: {
         fontSize: 20,
         fontWeight: "bold",
-        // marginTop: "",
         marginBottom: "2%",
         maxWidth: "75%",
         textAlign: "center",
@@ -102,6 +141,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     item: {
+        backgroundColor: "transparent",
+        shadowOpacity: 0,
         alignItems: 'center',
         justifyContent: 'center',
         margin: 10,
