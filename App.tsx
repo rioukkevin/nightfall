@@ -1,15 +1,9 @@
-import React from 'react';
 
-// Navigation
-import Router from './router/Router'
-import { Provider as PaperProvider } from 'react-native-paper';
+import React from "react";
+import Router from "./router/Router";
 
 const App = () => {
-  return (
-    <PaperProvider>
-      <Router />
-    </PaperProvider>
-  );
-}
+    return <Router></Router>;
+};
 
-export default App
+export default App;

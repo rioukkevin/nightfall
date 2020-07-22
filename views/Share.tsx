@@ -7,12 +7,12 @@ const ShareScreen = () => {
       <Text>Share</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  view: { 
-    flex: 1, 
-    alignItems: 'center', 
+  view: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center'
   },
 });
