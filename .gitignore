@@ -1,5 +1,5 @@
 node_modules/**/*
-.idea
+.idea/*
 .expo/*
 npm-debug.*
 *.jks
@@ -13,3 +13,4 @@ web-build/
 # macOS
 .DS_Store
 /node_modules
+/.idea/
