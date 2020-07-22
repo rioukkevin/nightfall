@@ -1,20 +1,11 @@
 import * as React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-// import * as NewsService from '../services/news';
-const { News } = require("../models/news");
-import { Button, Card, Title, Paragraph } from 'react-native-paper';
+import * as NewsService from '../services/news';
+import {Button, Card, Title, Paragraph, Avatar} from 'react-native-paper';
 
 const getNews = () => {
-  // return NewsService.getNewsData();
-
-  return [
-    new News({id : 1, name : 'News n°1', content : 'blbabla1', image : 'https://data.theupsider.com.au/wp-content/uploads/2017/09/shady-pines-saloon.jpg'}),
-    new News({id : 2, name : 'News n°2', content : 'blbabla2', image : 'https://whyy.org/wp-content/uploads/2018/05/owner-jp-teti-stands-behind-the-basement-bar-at-passyunk-avenue-a-philly-themed-dive-bar-in-london.original-e1526133272703-768x462.jpg'}),
-  ];
-
+  return NewsService.getNewsData();
 };
-
-console.log( getNews() );
 
 const NewsScreen = () => {
   return (
@@ -24,9 +15,10 @@ const NewsScreen = () => {
           <Card.Cover source={ news.image } />
           <Card.Title title={ news.name }/>
           <Card.Actions>
-            <Button icon="plus">
+            <Avatar.Icon size={24} icon="plus" />
+            <Text>
               Lire la suite
-            </Button>
+            </Text>
           </Card.Actions>
         </Card>
       ))}
