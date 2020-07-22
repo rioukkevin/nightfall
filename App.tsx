@@ -1,20 +1,12 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from 'react';
 
-// Views
-import MapScreen from "./views/Map";
-
-const Stack = createStackNavigator();
+// Navigation
+import Router from './router/Router'
 
 const App = () => {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={MapScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+  return (
+    <Router />
+  );
 };
 
-export default App;
+export default App
