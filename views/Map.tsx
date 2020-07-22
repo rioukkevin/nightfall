@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const HomeScreen = () => {
+const MapScreen = () => {
   return (
     <View style={styles.view}>
-      <Text>Home</Text>
+      <Text>Map</Text>
     </View>
   );
 }
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen
+export default MapScreen

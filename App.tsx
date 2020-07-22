@@ -1,19 +1,11 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-// Views
-import HomeView from './views/Home'
-
-const Stack = createStackNavigator();
+// Navigation
+import Router from './router/Router'
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeView} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Router />
   );
 }
 
