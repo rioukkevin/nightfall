@@ -21,15 +21,12 @@ const NewsScreen = () => {
     <View style={styles.view}>
       {getNews().map( ( news ) => (
         <Card>
-          <Card.Title title={ news.name }/>
-          <Card.Content>
-            <Title>{ news.name }</Title>
-            <Paragraph>{ news.content }</Paragraph>
-          </Card.Content>
           <Card.Cover source={ news.image } />
+          <Card.Title title={ news.name }/>
           <Card.Actions>
-            <Button>Cancel</Button>
-            <Button>Ok</Button>
+            <Button icon="plus">
+              Lire la suite
+            </Button>
           </Card.Actions>
         </Card>
       ))}
