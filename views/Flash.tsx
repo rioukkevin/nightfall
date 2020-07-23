@@ -16,6 +16,9 @@ const FlashScreen = () => {
       <Surface style={styles.flashButtonContainer}>
         <FAB icon="flash" onPress={toggleFlash} />
       </Surface>
+      <Surface style={styles.qrOverlay}>
+        
+      </Surface>
     </View>
   );
 }
@@ -37,6 +40,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
     backgroundColor: 'transparent'
+  },
+  qrOverlay:{
+
+  },
+  qr1:{
+    
+  },
+  qr2:{
+    
+  },
+  qr3:{
+    
+  },
+  qr4:{
+    
   }
 });
 

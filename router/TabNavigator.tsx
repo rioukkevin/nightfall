@@ -6,6 +6,7 @@ import HomePlusScreen from "../views/Home/HomePlus";
 import MapScreen from "../views/Map";
 import NewsScreen from "../views/News";
 import ShareScreen from "../views/Share";
+import FlashScreen from "../views/Flash";
 
 const Tab = createBottomTabNavigator();
 
@@ -93,7 +94,7 @@ const TabNavigator = () => (
         {/**Share screen */}
         <Tab.Screen
             name="Flash"
-            component={ShareScreen}
+            component={FlashScreen}
             options={{
                 tabBarLabel: "QR Code",
                 tabBarIcon: ({ color, size }) => (
