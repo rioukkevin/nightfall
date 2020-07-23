@@ -11,6 +11,7 @@ export const getAuthUser = (): User => {
         lastname: "GUENEAU",
         avatar:
             "https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1",
-        countPointsLastMonth: 8,
+        countPointsLastMonth: 460,
+        countPointsLastYear: 685,
     } as User;
 };
