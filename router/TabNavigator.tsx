@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import HomeScreen from "../views/Home";
+import HomeScreen from "../views/Home/Home";
+import HomePlusScreen from "../views/Home/HomePlus";
 import MapScreen from "../views/Map";
 import NewsScreen from "../views/News";
 import ShareScreen from "../views/Share";
@@ -26,6 +26,21 @@ const TabNavigator = () => (
                 ),
             }}
         ></Tab.Screen>
+
+      <Tab.Screen
+        name="HomePlus"
+        component={HomePlusScreen}
+        options={{
+          tabBarLabel: "HomePlus",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="home"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      ></Tab.Screen>
 
         {/**Map screen */}
         <Tab.Screen
