@@ -23,4 +23,9 @@ export default interface User {
      * Points of the last month
      */
     countPointsLastMonth?: number;
+
+    /**
+     * Points of the last month
+     */
+    countPointsLastYear?: number;
 }

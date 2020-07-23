@@ -11,7 +11,7 @@ const NewsScreen = () => {
     return (
         <View style={styles.view}>
             {getNews().map((news) => (
-                <Card key={news.id.toString()}>
+                <Card key={news.id.toString()} style={styles.card}>
                     <Card.Cover source={{ uri: news.image }} />
                     <Card.Title title={news.name} />
                     <Card.Actions>
@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    card : {
+        width : "90%"
+    }
 });
 
 export default NewsScreen;
