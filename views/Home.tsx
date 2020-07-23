@@ -12,13 +12,13 @@ const HomeScreen = () => {
                 style={styles.image}
             >
                 <View style={styles.text}>
-                    <Avatar.Icon size={24} icon="info" />
+                    <Avatar.Icon size={24} icon="information-outline" />
                     <Text>{authUser.login}</Text>
                     <Badge visible={true}>
                         {authUser.countPointsLastMonth || 0 / 1000}
                     </Badge>
 
-                    <Avatar.Icon size={24} icon="user" />
+                    <Avatar.Icon size={24} icon="account" />
                     <Image source={{ uri: "../assets/logo-nightfall.png" }} />
                 </View>
             </ImageBackground>
