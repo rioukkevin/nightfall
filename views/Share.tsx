@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, Share} from 'react-native';
+import {StyleSheet, View, Text, Share, ShareContent, Linking} from 'react-native';
 // @ts-ignore
 import {ShareDialog, ShareLinkContent} from 'react-native-fbsdk';
 import * as Facebook from 'expo-facebook';
@@ -11,6 +11,12 @@ import {Surface} from "react-native-paper";
 
 class ShareScreen extends React.Component<any, any> {
 
+    text: string = "Nightfall c'est trop cool !";
+
+    app_id: string ="1216319518700295";
+
+    url: string = "https://www.nightfallcards.fr/";
+
     constructor({props}: { props: any }) {
         super(props);
 
@@ -21,54 +27,54 @@ class ShareScreen extends React.Component<any, any> {
                 instagram: getInstagramDatas(),
             }
         }
-
     }
 
+    onShare = async (data: ShareContent) => {
+        try {
+            const result = await Share.share(data);
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    // console.log("shareFacebook");
+
+                    // shared with activity type of result.activityType
+                } else {
+                    // console.log("shareFacebook");
+
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+
     shareFacebook = () => {
-
-        console.log("shareFacebook");
-        /*
-        const shareLinkContent: ShareLinkContent = {
-            contentType: 'link',
-            contentUrl: "https://facebook.com",
-            contentDescription: 'Facebook sharing is easy!',
-        };
-
-        ShareDialog.setMode('webview');
-
-
-        ShareDialog.canShow(shareLinkContent)
-            .then(
-                function(canShow: any) {
-                    console.log("canShow");
-                    console.log(canShow);
-                    if (canShow) {
-                        return ShareDialog.show(shareLinkContent);
-                    }
-                }
-            )
-            .then(
-                function(result: any) {
-                    if (result.isCancelled) {
-                        alert('Share operation was cancelled');
-                    } else {
-                        alert('Share was successful with postId: '
-                            + result.postId);
-                    }
-                },
-                function(error: any) {
-                    alert('Share failed with error: ' + error.message);
-                }
-            );
-
-         */
+        Linking.openURL(`https://www.facebook.com/dialog/share?app_id=${this.app_id}&display=popup&quote=${this.text}&href=${this.url}`
+        ).then(r => {
+            console.log("share Facebook status : " + r.status);
+        })
     };
+
     shareTwitter = () => {
-        console.log("shareTwitter");
-
+        Linking.openURL(`https://www.twitter.com/intent/tweet?text=${this.text}&via=${this.url}`
+        ).then(r => {
+            console.log("share Twitter status : " + r.status);
+        });
     };
+
     shareInstagram = () => {
         console.log("shareInstagram");
+        // TODO Partage de photo sur instagram ?!!! quel rapport avec Nightfall
+
+        this.onShare({
+            message: this.text + this.url,
+            url: this.url,
+        }).then(r => {
+            console.log(JSON.stringify(r));
+            console.log("Shared");
+        });
 
     };
 
