@@ -1,6 +1,6 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document, Model } from "mongoose";
 
-const UserSchema : Schema = new Schema({
+const UserSchema: Schema = new Schema({
   firstname: {
     type: String,
     required: true
@@ -19,4 +19,6 @@ const UserSchema : Schema = new Schema({
   }
 })
 
-module.exports = model('users', UserSchema)
+const User: Model<Document> = model('users', UserSchema)
+
+export { User }

@@ -1,19 +1,25 @@
 import express from 'express';
 import mongoose from 'mongoose';
-const app = express();
-require('dotenv/config');
+import bodyParser from 'body-parser';
+import {usersRoutes} from './routes/users';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const app: express.Express = express();
 
 //Routes
-const usersRoute = require('./routes/users')
-app.use('/users', usersRoute)
+app.use('/users', usersRoutes)
 
-const bodyParser = require('body-parser')
+//Init body-parser
 app.use(bodyParser.json())
 
-const db_connection : string = process.env.DB_CONNECTION || '';
-
-mongoose.connect(db_connection, { useUnifiedTopology: true , useNewUrlParser : true} ,() => {
+//Connect to DB
+mongoose.connect(process.env.DB_CONNECTION!, {
+  useUnifiedTopology: true,
+  useNewUrlParser : true
+}, () => {
   console.log('Connected du DB !')
-})
+});
 
 app.listen(3000, () => console.log('Server running !'));

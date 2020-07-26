@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Model } from "mongoose";
 
 const TransactionSchema : Schema = new Schema({
   establishment_id : {
@@ -15,4 +15,6 @@ const TransactionSchema : Schema = new Schema({
   },
 })
 
-module.exports = model('transactions', TransactionSchema)
+const Transaction: Model<Document> = model('transactions', TransactionSchema)
+
+export { Transaction }

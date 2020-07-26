@@ -1,14 +1,16 @@
-import express, { Request, Response } from 'express';
-const router = express.Router();
-const User = require('../models/User')
+import express, { Request, Response, Router } from 'express';
+import { User } from '../models/User';
+import { Document } from 'mongoose';
 
-router.get('/', async (req : Request, res: Response) => {
+const usersRoutes: Router = express.Router();
+
+usersRoutes.get('/', async (req : Request, res: Response) => {
   try{
-    const users = await User.find()
+    const users: Document[] = await User.find()
     res.json(users)
   }catch(err){
     res.json({message : err})
   }
 })
 
-module.exports = router;
+export { usersRoutes }

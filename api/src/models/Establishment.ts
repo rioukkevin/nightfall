@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Model, Document } from "mongoose";
 
 const EstablishmentSchema : Schema = new Schema({
   establishment_type_id : {
@@ -15,4 +15,6 @@ const EstablishmentSchema : Schema = new Schema({
   },
 })
 
-module.exports = model('establishments', EstablishmentSchema)
+const Establishment: Model<Document> = model('establishments', EstablishmentSchema);
+
+export { Establishment }
