@@ -1,4 +1,4 @@
-import { model, Schema, Model } from "mongoose";
+import { model, Schema, Model, Document } from "mongoose";
 
 const TransactionSchema : Schema = new Schema({
   establishment_id : {

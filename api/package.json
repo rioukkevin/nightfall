@@ -6,14 +6,18 @@
   "scripts": {
     "start": "node dist/app.ts",
     "dev": "nodemon src/app.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "seeds": "node src/database/seeds/seeds.ts",
+    "fakes": "node src/database/fakes/fakes.ts"
   },
   "author": "Antoine GUENEAU",
   "license": "ISC",
   "dependencies": {
+    "@types/faker": "^4.1.12",
     "@types/mongoose": "^5.7.32",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "faker": "^4.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.16.1",
