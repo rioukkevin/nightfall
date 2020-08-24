@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, Share, ShareContent, Linking} from 'react-native';
+import {StyleSheet, View, Text, Share, ShareContent, Linking, ImageBackground} from 'react-native';
+
 // @ts-ignore
-import {ShareDialog, ShareLinkContent} from 'react-native-fbsdk';
-import * as Facebook from 'expo-facebook';
+import BackgroubdImageImage from '../assets/background-image-dark.png';
 
 // @ts-ignore
 import {getFacebookDatas, getTwitterDatas, getInstagramDatas} from "../services/ShareService";
@@ -80,12 +80,9 @@ class ShareScreen extends React.Component<any, any> {
 
     render() {
 
-        let infoFacebook = <Text>{this.state.data.facebook.statusCode == 0 ? "Déconnecté" : "Connecté"}</Text>;
-        let infoTwitter = <Text>{this.state.data.twitter.statusCode == 0 ? "Déconnecté" : "Connecté"}</Text>;
-        let infoInstagram = <Text>{this.state.data.instagram.statusCode == 0 ? "Déconnecté" : "Connecté"}</Text>;
-
-
         return (
+
+            <ImageBackground source={BackgroubdImageImage} style={styles.image}>
 
             <View style={styles.view}>
                 <Text style={styles.title}>MONPSEUDO</Text>
@@ -95,24 +92,26 @@ class ShareScreen extends React.Component<any, any> {
                     <Surface style={styles.icon}>
                         <MaterialCommunityIcons size={50} name="facebook" />
                     </Surface>
-                    {infoFacebook}
+                    <Text>Facebook</Text>
                 </Surface>
 
                 <Surface onTouchEnd={this.shareTwitter} style={styles.item}>
                     <Surface style={styles.icon}>
                         <MaterialCommunityIcons size={50} name="twitter"/>
                     </Surface>
-                    {infoTwitter}
+                    <Text>Twitter</Text>
 
                 </Surface>
                 <Surface onTouchEnd={this.shareInstagram} style={styles.item}>
                     <Surface style={styles.icon}>
-                        <MaterialCommunityIcons size={50} name="instagram"/>
+                        <MaterialCommunityIcons size={50} name="share-variant"/>
                     </Surface>
-                    {infoInstagram}
+                    <Text>Autres</Text>
+
                 </Surface>
 
             </View>
+            </ImageBackground>
         );
     }
 }
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
     },
     title: {
         maxWidth: "90%",
-        fontSize: 35,
+        fontSize: 40,
         fontWeight: "bold",
         marginTop: "20%",
         marginBottom: "10%",
@@ -133,9 +132,14 @@ const styles = StyleSheet.create({
     subTitle: {
         fontSize: 20,
         fontWeight: "bold",
-        marginBottom: "2%",
+        marginBottom: "5%",
         maxWidth: "75%",
         textAlign: "center",
+    },
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
     },
     icon: {
         width: 75,
