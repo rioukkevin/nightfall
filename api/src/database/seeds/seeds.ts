@@ -1,3 +1,3 @@
-// TODO Ca ne marche pas mais je ne vois pas pourquoi.
-const type_establishment_seeder = require('./entities/type_establishments')
-type_establishment_seeder.seed();
+// TODO Ca ne marche pas mais je ne voie pas pourquoi.
+import { seed } from './entities/type_establishments';
+seed();
