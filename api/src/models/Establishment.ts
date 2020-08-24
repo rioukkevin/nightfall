@@ -1,6 +1,10 @@
 import { model, Schema, Model, Document } from "mongoose";
 
 const EstablishmentSchema : Schema = new Schema({
+  name : {
+    type : String,
+    require : true
+  },
   establishment_type_id : {
     type : Number,
     required : true

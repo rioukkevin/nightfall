@@ -1,18 +1,18 @@
 import { TypeEstablishment } from '../../../models/Type_establishment';
 
+
 const seed = function() {
-    const type_establishments : Array<any> = [
+    
+    const type_establishments : Array<string> = [
         'Bar',
         'Restaurant',
         'Discothèque'
-    ]
-    
-    for (let i = 0; i < type_establishments.length; i++){
-        const type_establishment = new TypeEstablishment({
-            name : type_establishments[i],
-        })
-        type_establishment.save();
-    }
+    ];
+
+    type_establishments
+        .map(type_establishment => new TypeEstablishment({name: type_establishment}))
+        .forEach(type_establishment => type_establishment.save());
+
 }
 
-module.exports.type_establishment_seeder = seed;
+export { seed }
