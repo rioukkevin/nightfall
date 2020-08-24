@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19003,
-  "packagerPid": 26084,
-  "expoServerNgrokUrl": "https://39-hgp.anonymous.nightfall.exp.direct",
-  "packagerNgrokUrl": "https://packager.39-hgp.anonymous.nightfall.exp.direct",
-  "ngrokPid": 9604,
+  "packagerPort": 19006,
+  "packagerPid": 32996,
+  "expoServerNgrokUrl": "https://4k-y28.anonymous.nightfall.exp.direct",
+  "packagerNgrokUrl": "https://packager.4k-y28.anonymous.nightfall.exp.direct",
+  "ngrokPid": 29584,
   "webpackServerPort": null
 }
