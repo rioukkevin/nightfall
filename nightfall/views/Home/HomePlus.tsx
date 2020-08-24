@@ -20,7 +20,6 @@ const HomePlusScreen = () => {
           width={10}
           fill={countPointsLastYear}
           tintColor="#00e0ff"
-          onAnimationComplete={() => console.log('onAnimationComplete')}
           backgroundColor="#3d5875">
           {
             (countPointsLastYear) => (
@@ -35,7 +34,6 @@ const HomePlusScreen = () => {
           width={10}
           fill={countPointsLastMonth}
           tintColor="#00e0ff"
-          onAnimationComplete={() => console.log('onAnimationComplete')}
           backgroundColor="#3d5875">
           {
             (countPointsLastMonth) => (
