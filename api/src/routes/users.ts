@@ -5,12 +5,8 @@ import { Document } from 'mongoose';
 const usersRoutes: Router = express.Router();
 
 usersRoutes.get('/', async (req : Request, res: Response) => {
-  try{
-    const users: Document[] = await User.find()
-    res.json(users)
-  }catch(err){
-    res.json({message : err})
-  }
+  const users: Document[] = await User.find()
+  res.json(users)
 })
 
 export { usersRoutes }
