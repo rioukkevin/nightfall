@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, View, ImageBackground } from 'react-native';
-import BackgroubdImageImage from '../../assets/background-image.jpg';
+// @ts-ignore
+import BackgroubdImageImage from '../../assets/background-image-dark.png';
 
-const LayoutHomeScreen = (props) => {
+const LayoutHomeScreen = (props: any) => {
 
   return (
     <View style={styles.view}>
