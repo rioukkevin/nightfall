@@ -7,8 +7,8 @@
     "start": "node dist/app.ts",
     "dev": "nodemon src/app.ts",
     "build": "tsc -p .",
-    "seeds": "nodemon src/database/seeds/seeds.ts",
-    "fakes": "nodemon src/database/fakes/fakes.ts"
+    "seeds": "node src/database/seeds/seeds.ts",
+    "fakes": "node src/database/fakes/fakes.ts"
   },
   "author": "Antoine GUENEAU",
   "license": "ISC",
