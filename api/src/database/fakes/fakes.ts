@@ -1,5 +1,9 @@
-// TODO appeller les 3 fakers$
+import { fakeEstablishments } from './entities/establishments';
+import { fakeUsers } from './entities/users';
+import { fakeTransactions } from './entities/transactions';
+import { connection } from './../connection';
 
-require('./entities/establisments');
-require('./entities/users');
-require('./entities/transactions');
+connection()
+fakeEstablishments();
+fakeUsers();
+fakeTransactions();

@@ -1,6 +1,8 @@
 import { TypeEstablishment } from '../../../models/Type_establishment';
 
+
 const seed = function() {
+    
     const type_establishments : Array<string> = [
         'Bar',
         'Restaurant',
