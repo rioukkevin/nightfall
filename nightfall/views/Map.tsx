@@ -44,14 +44,20 @@ const MapScreen: FunctionComponent = () => {
     //#endregion
 
     //#region Get current location
-    navigator.geolocation.getCurrentPosition((position) => {
-        setMapPosition({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: defaultDelta,
-            longitudeDelta: defaultDelta,
-        });
-    });
+    useEffect(() => {
+        const setLocation = async () => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setMapPosition({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: defaultDelta,
+                    longitudeDelta: defaultDelta,
+                });
+            });
+        }
+        setLocation();
+    }, []);
+    
 
     //#endregion
 
