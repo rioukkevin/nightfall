@@ -1,47 +1,55 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FlashScreen from "../views/Flash";
 import HomeScreen from "../views/Home/Home";
 import HomePlusScreen from "../views/Home/HomePlus";
 import MapScreen from "../views/Map";
 import NewsScreen from "../views/News";
 import ShareScreen from "../views/Share";
-import FlashScreen from "../views/Flash";
+import { StyleSheet } from "react-native";
 
-const Tab = createBottomTabNavigator();
+/**Component style */
+const style = StyleSheet.create({
+    tabBar: {
+        backgroundColor: "black",
+        color: "white",
+        paddingVertical: 4,
+    }
+    
+});
 
+
+/**
+ * Get an JSX icon element
+ * @param iconName Icon to use
+ * @param color Icon color
+ */
+const getIcon = (iconName: string, color: string) => (
+    <MaterialCommunityIcons name={iconName} color={color} size={26}/>
+);
+
+const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = () => (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="Home" barStyle={style.tabBar} labeled={false}>
         {/**Home screen */}
         <Tab.Screen
             name="Home"
             component={HomeScreen}
             options={{
                 tabBarLabel: "Accueil",
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons
-                        name="home"
-                        color={color}
-                        size={size}
-                    />
-                ),
+                tabBarIcon: ({ color }) => getIcon("home", color),
             }}
         ></Tab.Screen>
 
-      <Tab.Screen
-        name="HomePlus"
-        component={HomePlusScreen}
-        options={{
-          tabBarLabel: "HomePlus",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="home"
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      ></Tab.Screen>
+        <Tab.Screen
+            name="HomePlus"
+            component={HomePlusScreen}
+            options={{
+                tabBarLabel: "HomePlus",
+                tabBarIcon: ({ color }) => getIcon("home", color),
+            }}
+        ></Tab.Screen>
 
         {/**Map screen */}
         <Tab.Screen
@@ -49,13 +57,7 @@ const TabNavigator = () => (
             component={MapScreen}
             options={{
                 tabBarLabel: "Carte",
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons
-                        name="map-search"
-                        color={color}
-                        size={size}
-                    />
-                ),
+                tabBarIcon: ({ color }) => getIcon("map-search", color),
             }}
         ></Tab.Screen>
 
@@ -65,13 +67,7 @@ const TabNavigator = () => (
             component={NewsScreen}
             options={{
                 tabBarLabel: "Actualités",
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons
-                        name="newspaper-variant"
-                        color={color}
-                        size={size}
-                    />
-                ),
+                tabBarIcon: ({ color }) => getIcon("newspaper-variant", color),
             }}
         ></Tab.Screen>
 
@@ -81,13 +77,7 @@ const TabNavigator = () => (
             component={ShareScreen}
             options={{
                 tabBarLabel: "Partager",
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons
-                        name="share-variant"
-                        color={color}
-                        size={size}
-                    />
-                ),
+                tabBarIcon: ({ color }) => getIcon("share-variant", color),
             }}
         ></Tab.Screen>
 
@@ -97,13 +87,7 @@ const TabNavigator = () => (
             component={FlashScreen}
             options={{
                 tabBarLabel: "QR Code",
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons
-                        name="camera-control"
-                        color={color}
-                        size={size}
-                    />
-                ),
+                tabBarIcon: ({ color }) => getIcon("camera-control", color),
             }}
         ></Tab.Screen>
     </Tab.Navigator>
