@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Projet d'etude Master",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node dist/app.ts",
     "dev": "nodemon src/app.ts",
