@@ -2,7 +2,7 @@
   "compilerOptions": {
       "module": "esnext",
       "esModuleInterop": true,
-      "target": "es2017",
+      "target": "ES5",
       "noImplicitAny": true,
       "moduleResolution": "node",
       "sourceMap": true,

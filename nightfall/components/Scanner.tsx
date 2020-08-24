@@ -4,7 +4,7 @@ import { StyleSheet, Text } from "react-native";
 
 interface IBarcodeProps {
     flash: string;
-    callback: Function ;
+    callback: Function;
 }
 
 const Barcode: FC<IBarcodeProps> = (props) => {
@@ -21,7 +21,7 @@ const Barcode: FC<IBarcodeProps> = (props) => {
 
     const handleBarCodeScanned = (scanningResult: BarCodeScanningResult) => {
         setScanned(true);
-        props.callback(scanningResult)
+        props.callback(scanningResult);
     };
 
     if (hasPermission === null) {
