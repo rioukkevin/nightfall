@@ -96,6 +96,7 @@ const TabNavigator = () => (
             name="Flash"
             component={FlashScreen}
             options={{
+                unmountOnBlur: true,
                 tabBarLabel: "QR Code",
                 tabBarIcon: ({ color, size }) => (
                     <MaterialCommunityIcons
