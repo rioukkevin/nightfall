@@ -4,7 +4,7 @@
   "description": "Projet d'etude Master",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/app.ts",
+    "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc -p .",
     "seeds": "npx ts-node src/database/seeds/seeds.ts",

@@ -3,7 +3,7 @@ import LoginDto from "../dto/LoginDto";
 import CreateUserDto from "../dto/CreateUserDto";
 import { User } from "../models/User";
 import * as bcrypt from "bcrypt";
-import { PASSWORD_SALT } from "src/helpers/passwordHelpers";
+import { PASSWORD_SALT } from "../helpers/passwordHelpers";
 
 const authenticationRoutes: Router = express.Router();
 
