@@ -1,6 +1,9 @@
 import { BarCodeScanningResult, Camera, PermissionStatus } from "expo-camera";
 import React, { FC, useEffect, useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+// import { withNavigationFocus } from '@react-navigation/compat';
+import { Surface, Text } from "react-native-paper";
 
 interface IBarcodeProps {
     flash: string;
@@ -10,7 +13,22 @@ interface IBarcodeProps {
 const Barcode: FC<IBarcodeProps> = (props) => {
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
     const [scanned, setScanned] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const cameraRef = React.createRef<Camera>();
+
+    const navigator = useNavigation();
+    navigator.addListener("blur", () => {
+        setLoaded(false)
+        // if(cameraRef.current){
+        //     cameraRef.current.pausePreview()
+        // }
+    })
+    navigator.addListener("focus", () => {
+        setLoaded(true)
+        // if(cameraRef.current){
+        //     cameraRef.current.resumePreview()
+        // }
+    })
 
     useEffect(() => {
         (async () => {
@@ -32,7 +50,7 @@ const Barcode: FC<IBarcodeProps> = (props) => {
     }
 
     return (
-        <Camera
+        loaded && <Camera
             ref={cameraRef}
             flashMode={props.flash}
             ratio="16:9"
