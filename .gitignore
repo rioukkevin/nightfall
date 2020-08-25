@@ -15,4 +15,5 @@ web-build/
 .DS_Store
 node_modules/
 /.expo
+nightfall/app.config.js
 dist/
