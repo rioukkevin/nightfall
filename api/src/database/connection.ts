@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-const connection = function () {
+const connectToDb = () => {
+    //Load env variables
     dotenv.config();
 
+    //Connect to mongo
     mongoose.connect(
         process.env.DB_CONNECTION!,
         {
@@ -18,4 +20,4 @@ const connection = function () {
     );
 };
 
-export { connection };
+export { connectToDb };

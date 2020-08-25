@@ -4,11 +4,13 @@ import { usersRoutes } from "./routes/users";
 import { establishmentsRoutes } from "./routes/establishments";
 import { transactionsRoutes } from "./routes/transactions";
 import { typesEstablishmentRoutes } from "./routes/typeEstablishments";
-import { connection } from "./database/connection";
+import { connection as connectToDb } from "./database/connection";
 import { authenticationRoutes } from "./routes/authentication";
 
-connection();
+//Connect to the database
+connectToDb();
 
+//Express application
 const app: express.Express = express();
 
 //#region Middlewares
@@ -16,19 +18,21 @@ const app: express.Express = express();
 app.use(bodyParser.json());
 //#endregion
 
-//Routes users
+//#region Routes
+//users
 app.use("/users", usersRoutes);
 
-//Routes type d'establishments
+//type d'establishments
 app.use("/establishments", establishmentsRoutes);
 
-//Routes establishments
+//establishments
 app.use("/types-establishment", typesEstablishmentRoutes);
 
-//Routes transactions
+//transactions
 app.use("/transactions", transactionsRoutes);
 
 //Authentication
 app.use("/auth", authenticationRoutes);
+//#endregion
 
 app.listen(3000, () => console.log("Server running !"));
