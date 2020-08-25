@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Text, Image, View} from 'react-native';
-import { Badge } from 'react-native-paper';
+import { Image, View} from 'react-native';
+import { Badge, Text } from 'react-native-paper';
 import * as AuthService from '../../services/auth';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LayoutHome from "./LayoutHome";

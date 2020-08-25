@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, Share, ShareContent, Linking, ImageBackground} from 'react-native';
+import {StyleSheet, View, Share, ShareContent, Linking, ImageBackground} from 'react-native';
+import { Text } from 'react-native-paper';
 
 // @ts-ignore
 import BackgroubdImageImage from '../assets/background-image-dark.png';
