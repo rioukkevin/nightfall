@@ -13,8 +13,6 @@
   "author": "Antoine GUENEAU",
   "license": "ISC",
   "dependencies": {
-    "@types/faker": "^4.1.12",
-    "@types/mongoose": "^5.7.32",
     "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -23,9 +21,12 @@
     "mongoose-unique-validator": "^2.0.3",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "mongoose": "^5.9.25",
   },
   "devDependencies": {
+    "@types/faker": "^4.1.12",
+    "@types/mongoose": "^5.7.32",
     "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.16.1",
     "@types/jsonwebtoken": "^8.5.0",
@@ -34,7 +35,6 @@
     "@types/passport": "^1.0.4",
     "@types/passport-jwt": "^3.0.3",
     "@types/passport-local": "^1.0.33",
-    "mongoose": "^5.9.25",
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
     "ts-node": "^8.10.2",
