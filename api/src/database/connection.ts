@@ -1,16 +1,23 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const connection = function() {
+const connectToDb = () => {
+    //Load env variables
+    dotenv.config();
 
-  dotenv.config();
+    //Connect to mongo
+    mongoose.connect(
+        process.env.DB_CONNECTION!,
+        {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+        },
+        (error) => {
+            console.log(
+                `Error while trying to connect to the mongo database : ${error.message}`
+            );
+        }
+    );
+};
 
-  mongoose.connect(process.env.DB_CONNECTION!, {
-    useUnifiedTopology: true,
-    useNewUrlParser : true
-  }, () => {
-    console.log('Connected du DB !')
-  });
-}
-
-export { connection }
+export { connectToDb };
