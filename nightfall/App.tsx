@@ -9,6 +9,7 @@ const theme = {
     dark: true,
     colors: {
         ...DefaultTheme.colors,
+        text: '#FFFFFF',
         primary: '#003348', // Brand color
         accent: '#fea500', // Button background color
     },

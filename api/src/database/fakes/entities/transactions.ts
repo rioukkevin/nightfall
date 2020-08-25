@@ -1,13 +1,13 @@
 import { Transaction } from '../../../models/Transaction';
 import { Establishment } from '../../../models/Establishment';
-import { User } from '../../../models/User';
+import { UserModel } from '../../../models/User';
 
 const fakeTransactions = async function() {
 
   const establishments : Array<any> = await Establishment.find().exec();
   const establishments_ids : Array<String> = establishments.map( establishment => establishment._id)
 
-  const users : Array<any> = await User.find().exec();
+  const users : Array<any> = await UserModel.find().exec();
   const users_ids : Array<String> = users.map( user => user._id)
 
   for (let i = 0; i < 25; i++){
