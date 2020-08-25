@@ -22,7 +22,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "mongoose": "^5.9.25",
+    "mongoose": "^5.9.25"
   },
   "devDependencies": {
     "@types/faker": "^4.1.12",
