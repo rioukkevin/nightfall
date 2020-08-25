@@ -1,6 +1,7 @@
 .idea/*
 .expo/*
 .idea
+.vscode
 npm-debug.*
 *.jks
 *.p8
