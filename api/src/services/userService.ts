@@ -1,10 +1,11 @@
 import { Transaction } from "../models/Transaction";
+import { UserType } from "../models/User";
 
 export default class userService {
 
-  user: any;
+  user: UserType;
 
-  constructor(user: any) {
+  constructor(user: UserType) {
     this.user = user;
   }
 

@@ -11,6 +11,6 @@ const TypeEstablishmentSchema : Schema = new Schema({
   }
 })
 
-const TypeEstablishment: Model<Document> = model("establishmentType", TypeEstablishmentSchema);
+const TypeEstablishment: Model<Document> = model("establishmenttypes", TypeEstablishmentSchema);
 
 export { TypeEstablishment };
