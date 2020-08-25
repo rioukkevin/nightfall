@@ -1,4 +1,4 @@
-import { TypeEstablishment } from '../../../models/Type_establishment';
+import { TypeEstablishment } from "../../../models/Type_establishment";
 
 const seed = function() {
     
@@ -29,7 +29,5 @@ const seed = function() {
       }
     });
   });
-
 }
-
-export { seed }
+export { seed };

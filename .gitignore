@@ -1,6 +1,7 @@
 .idea/*
 .expo/*
 .idea
+.vscode
 npm-debug.*
 *.jks
 *.p8
@@ -14,3 +15,4 @@ web-build/
 .DS_Store
 node_modules/
 /.expo
+dist/

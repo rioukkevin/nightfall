@@ -1,4 +1,4 @@
-import { model, Schema, Model, Document } from "mongoose";
+import { Document, model, Model, Schema } from "mongoose";
 
 const TypeEstablishmentSchema : Schema = new Schema({
   name : {
@@ -11,6 +11,6 @@ const TypeEstablishmentSchema : Schema = new Schema({
   }
 })
 
-const TypeEstablishment: Model<Document> = model('establishmenttypes', TypeEstablishmentSchema);
+const TypeEstablishment: Model<Document> = model("establishmentType", TypeEstablishmentSchema);
 
-export { TypeEstablishment }
+export { TypeEstablishment };
