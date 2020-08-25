@@ -3,7 +3,7 @@ import LoginDto from "../dto/LoginDto";
 import CreateUserDto from "../dto/CreateUserDto";
 import { User } from "../models/User";
 import * as bcrypt from "bcrypt";
-import { PASSWORD_SALT } from "../helpers/passwordHelpers";
+import { PASSWORD_SALT_NUMBER } from "../helpers/passwordHelpers";
 
 const authenticationRoutes: Router = express.Router();
 
@@ -24,7 +24,7 @@ authenticationRoutes.post("/signup", async (req: Request, res: Response) => {
     const createUserDto: CreateUserDto = req.body;
     if (!(createUserDto?.email && createUserDto?.password)) {
         res.status(500);
-        res.json("Email or password are mandatories");
+        res.json("Email and password are mandatories");
     } else if (createUserDto.password.length < 5) {
         res.status(500);
         res.json("Password is too short");
@@ -32,13 +32,19 @@ authenticationRoutes.post("/signup", async (req: Request, res: Response) => {
         //Create user model
         const user: User = {
             ...createUserDto,
-            password: await bcrypt.hash(createUserDto.password, PASSWORD_SALT),
+            password: await bcrypt.hash(
+                createUserDto.password,
+                PASSWORD_SALT_NUMBER
+            ),
         };
         //Create in db
         try {
             await new User({
                 ...user,
-            }).save();
+            }).save({
+                validateBeforeSave: true,
+                validateModifiedOnly: true,
+            });
             res.status(201);
             res.json(user);
         } catch (error) {

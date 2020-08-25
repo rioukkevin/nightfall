@@ -1,1 +1,1 @@
-export const PASSWORD_SALT = "NestJS_I_Want_To_Try_It";
+export const PASSWORD_SALT_NUMBER = 10;

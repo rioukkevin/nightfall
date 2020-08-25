@@ -11,6 +11,11 @@ connection();
 
 const app: express.Express = express();
 
+//#region Middlewares
+//Init body-parser
+app.use(bodyParser.json());
+//#endregion
+
 //Routes users
 app.use("/users", usersRoutes);
 
@@ -25,8 +30,5 @@ app.use("/transactions", transactionsRoutes);
 
 //Authentication
 app.use("/auth", authenticationRoutes);
-
-//Init body-parser
-app.use(bodyParser.json());
 
 app.listen(3000, () => console.log("Server running !"));
