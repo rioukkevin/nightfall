@@ -21,14 +21,16 @@ const UserSchema: Schema = new Schema({
     },
 });
 
-interface User {
+interface IUser {
     firstname: string;
     lastname: string;
     email: string;
     password: string;
 }
 
+type UserType = IUser & Document;
+
 UserSchema.plugin(uniqueValidator);
 
-const User: Model<Document> = model("users", UserSchema);
-export { User };
+const UserModel: Model<UserType> = model<UserType>("users", UserSchema);
+export { UserModel, IUser, UserType };
