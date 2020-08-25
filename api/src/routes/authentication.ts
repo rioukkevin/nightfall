@@ -76,7 +76,6 @@ authenticationRoutes.post("/signup", async (req: Request, res: Response) => {
                 ...user,
             }).save({
                 validateBeforeSave: true,
-                validateModifiedOnly: true,
             });
             res.status(201);
             res.json(user);
