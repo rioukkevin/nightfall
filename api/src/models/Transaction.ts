@@ -13,6 +13,10 @@ const TransactionSchema : Schema = new Schema({
     type : Date,
     default : Date.now
   },
+  establishment : {
+    type : Schema.Types.ObjectId,
+    ref : 'establishments'
+  }
 })
 
 const Transaction: Model<Document> = model('transactions', TransactionSchema)

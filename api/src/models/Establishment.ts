@@ -17,6 +17,10 @@ const EstablishmentSchema : Schema = new Schema({
     type : Number,
     required : true
   },
+  establishment_type: {
+    type : Schema.Types.ObjectId,
+    ref : 'establishmenttypes'
+  }
 })
 
 const Establishment: Model<Document> = model('establishments', EstablishmentSchema);

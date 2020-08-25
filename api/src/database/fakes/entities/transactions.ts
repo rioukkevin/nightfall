@@ -16,7 +16,8 @@ const fakeTransactions = async function() {
     const transaction = new Transaction({
       establishment_id : establishments_ids[index_establishment_ramdom],
       user_id : users_ids[index_user_ramdom],
-      date : Date.now()
+      date : Date.now(),
+      establishment : establishments[index_establishment_ramdom]
     })
     transaction.save();
   }
