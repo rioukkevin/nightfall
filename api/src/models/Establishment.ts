@@ -6,7 +6,7 @@ const EstablishmentSchema : Schema = new Schema({
     require : true
   },
   establishment_type_id : {
-    type : Number,
+    type : String,
     required : true
   },
   latitude : {

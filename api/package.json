@@ -3,13 +3,12 @@
   "version": "0.0.1",
   "description": "Projet d'etude Master",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "node dist/app.ts",
     "dev": "nodemon src/app.ts",
     "build": "tsc -p .",
-    "seeds": "node src/database/seeds/seeds.ts",
-    "fakes": "node src/database/fakes/fakes.ts"
+    "seeds": "npx ts-node src/database/seeds/seeds.ts",
+    "fakes": "npx ts-node src/database/fakes/fakes.ts"
   },
   "author": "Antoine GUENEAU",
   "license": "ISC",
