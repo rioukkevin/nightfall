@@ -1,7 +1,9 @@
-import { Document, model, Model, Schema } from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
-import { TransactionModel } from "./Transaction";
 import moment from "moment";
+import { Document, model, Model, Schema, QueryPopulateOptions } from "mongoose";
+import uniqueValidator from "mongoose-unique-validator";
+import { ITransaction, TransactionModel } from "./Transaction";
+import { EstablishmentModel } from "./Establishment";
+import { TypeEstablishmentModel } from "./Type_establishment";
 
 const UserSchema: Schema = new Schema({
     firstname: {
@@ -21,6 +23,9 @@ const UserSchema: Schema = new Schema({
         type: String,
         required: true,
     },
+    transactions: {
+        type: Array,
+    },
 });
 
 interface IUser {
@@ -28,6 +33,7 @@ interface IUser {
     lastname: string;
     email: string;
     password: string;
+    transactions: Array<ITransaction>;
 }
 
 type UserType = IUser & Document;
@@ -42,10 +48,10 @@ const countPointsLastMonth = function (user: UserType) {
     return countPoints(user, "month");
 };
 
-const countPoints = async function (
+const countPoints = async (
     user: UserType,
     period: moment.unitOfTime.StartOf
-) {
+): Promise<number> => {
     const start = moment().startOf(period).format("YYYY-MM-DD");
     const end = moment().endOf(period).format("YYYY-MM-DD");
     const transactions: Array<any> = await TransactionModel.find({
@@ -56,10 +62,12 @@ const countPoints = async function (
         },
     }).populate({
         path: "establishment",
+        model: EstablishmentModel,
         populate: {
             path: "establishment_type",
+            model: TypeEstablishmentModel,
         },
-    });
+    } as QueryPopulateOptions);
     return transactions.reduce((points, transaction) => {
         return points + transaction.establishment.establishment_type.points;
     }, 0);
@@ -70,6 +78,7 @@ export {
     UserModel,
     IUser,
     UserType,
+    countPoints,
     countPointsLastYear,
     countPointsLastMonth,
 };

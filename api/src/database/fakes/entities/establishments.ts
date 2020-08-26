@@ -1,14 +1,14 @@
 import { EstablishmentModel } from "../../../models/Establishment";
-import { TypeEstablishment } from "../../../models/Type_establishment";
+import { TypeEstablishmentModel } from "../../../models/Type_establishment";
 
 const fakeEstablishments = async function () {
-    const type_bar = await TypeEstablishment.findOne({ name: "Bar" }).exec();
+    const type_bar = await TypeEstablishmentModel.findOne({ name: "Bar" }).exec();
 
-    const type_restos = await TypeEstablishment.findOne({
+    const type_restos = await TypeEstablishmentModel.findOne({
         name: "Restaurant",
     }).exec();
 
-    const type_discotheques = await TypeEstablishment.findOne({
+    const type_discotheques = await TypeEstablishmentModel.findOne({
         name: "Discothèque",
     }).exec();
 

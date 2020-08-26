@@ -1,59 +1,40 @@
-import { IUser, UserModel } from "../models/User";
+import moment from "moment";
 import { connectToDb } from "../database/connection";
+import UserPoints from "../dto/UserPoints";
+import { countPoints, UserModel } from "../models/User";
 
-interface UserPoints {
-    user: IUser;
-    points: number;
-}
-const getRanking = async () => {
-    // const ranking: UserPoints[] = [];
-    // const users = await UserModel.find().exec();
-    // users.forEach(async (user) => {
-    //     const transactions = await TransactionModel.find({ user_id: user._id });
-    //     const points = transactions.map(x => x.)
-    //     ranking.push({
-    //         user: user,
-    //         points: transactions.map(x => x.po)
-    //     })
+const getRanking = async (
+    period: moment.unitOfTime.StartOf
+): Promise<UserPoints[]> => {
+    
+    const result: UserPoints[] = [];
+    if (period) {
+        console.log("Je démarre");
 
-    // });
-    try {
-        connectToDb();
-        const result = await UserModel.aggregate([
-            {
-                $lookup: {
-                    from: "transactions",
-                    localField: "_id",
-                    foreignField: "user_id",
-                    as: "transactions",
-                },
-            },
-            {
-                $unwind: "$transactions",
-            },
-            {
-                $lookup: {
-                    from: "establishments",
-                    localField: "_id",
-                    foreignField: "establishment_id",
-                    as: "establishments",
-                },
-            },
-            {
-                $lookup: {
-                    from: "establishmentTypes",
-                    localField: "_id",
-                    foreignField: "establishment_type_id",
-                    as: "establishmentTypes",
-                },
-            },
-        ]);
-        console.log(result);
-    } catch (error) {
-        console.log("error", error);
+        //Get users
+        const users = await UserModel.find().exec();
+
+        console.log(`J'ai récupéré ${users.length} utilisateurs`);
+
+        //Get points
+        for (let index = 0; index < users.length; index++) {
+            const user = users[index];
+
+            console.log(
+                `Je calcul les points de ${user.lastname} ${user.firstname}`
+            );
+            result.push({
+                user: user,
+                points: await countPoints(user, period),
+                period: period?.toLowerCase() ?? "",
+            });
+        }
     }
-};
 
-getRanking().finally(() => {
+    console.log("Je termine");
+    return result;
+};
+connectToDb();
+getRanking("month").finally(() => {
     console.log("Fin");
 });

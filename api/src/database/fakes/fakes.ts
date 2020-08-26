@@ -5,12 +5,17 @@ import { connectToDb } from "./../connection";
 
 /**Connect to the DB and create mocks */
 connectToDb();
-fakeEstablishments();
-fakeUsers();
-fakeTransactions();
 
-Promise.all([
-    fakeEstablishments(),
-    fakeUsers(),
-    fakeTransactions(),
-]).finally(() => console.log("Mocks added"));
+fakeEstablishments()
+    .then(() => {
+        fakeUsers()
+            .then(() => {
+                fakeTransactions().finally(() =>
+                    console.log("Transactions added")
+                );
+            })
+            .finally(() => console.log("Users added"));
+    })
+    .finally(() => {
+        console.log("Establishments added. \nFinished");
+    });

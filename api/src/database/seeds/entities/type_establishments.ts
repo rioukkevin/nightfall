@@ -1,19 +1,19 @@
 import {
-    TypeEstablishment,
+    TypeEstablishmentModel,
     TypeEstablishmentType,
 } from "../../../models/Type_establishment";
 
 const seed = async () => {
     const type_establishments: Array<TypeEstablishmentType> = [
-        new TypeEstablishment({
+        new TypeEstablishmentModel({
             name: "Bar",
             points: 25,
         }),
-        new TypeEstablishment({
+        new TypeEstablishmentModel({
             name: "Restaurant",
             points: 40,
         }),
-        new TypeEstablishment({
+        new TypeEstablishmentModel({
             name: "Discothèque",
             points: 15,
         }),
@@ -27,7 +27,7 @@ const seed = async () => {
 
     type_establishments.forEach(async (type_establishment) => {
         //Search if it not exists
-        const typeDocs = await TypeEstablishment.find({
+        const typeDocs = await TypeEstablishmentModel.find({
             name: type_establishment.name,
         }).exec();
         if (!typeDocs?.length) {
