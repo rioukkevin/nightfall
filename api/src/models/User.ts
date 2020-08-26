@@ -42,7 +42,7 @@ const countPointsLastMonth = function( user : UserType ) {
   return countPoints( user, 'month');
 }
 
-const countPoints = async function (user : UserType, period : string) {
+const countPoints = async function (user : UserType, period : moment.unitOfTime.StartOf) {
   const start = moment().startOf(period).format('YYYY-MM-DD');
   const end = moment().endOf(period).format('YYYY-MM-DD');
   const transactions : Array<any> = (await TransactionModel.find({
