@@ -1,7 +1,7 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import { Text } from 'react-native-paper';
-import { Avatar, Card } from "react-native-paper";
+import { Button, Card, DefaultTheme } from "react-native-paper";
 import * as NewsService from "../services/news";
 
 const getNews = () => {
@@ -10,29 +10,65 @@ const getNews = () => {
 
 const NewsScreen = () => {
     return (
-        <View style={styles.view}>
+        <ScrollView style={styles.view}>
             {getNews().map((news) => (
                 <Card key={news.id.toString()} style={styles.card}>
                     <Card.Cover source={{ uri: news.image }} />
-                    <Card.Title title={news.name} />
-                    <Card.Actions>
-                        <Avatar.Icon size={24} icon="plus" />
-                        <Text>Lire la suite</Text>
+                    <Card.Content>
+                        <Text theme={{colors:{text:'#111111'}}} style={styles.title}>{news.name}</Text>
+                        <Text theme={{colors:{text:'#111111'}}} style={styles.content}>{news.content}</Text>
+                    </Card.Content>
+                    <Card.Actions style={styles.actions}>
+                        <Button icon="plus" color="#fea500" mode="text" theme={{}} style={styles.button}>Lire la suite</Button>
                     </Card.Actions>
                 </Card>
             ))}
-        </View>
+        </ScrollView>
     );
+};
+
+const lightTheme = {
+    ...DefaultTheme,
+    dark: false,
+    colors: {
+        ...DefaultTheme.colors,
+        text: '#FFFFFF',
+        primary: '#003348', // Brand color
+        accent: '#fea500', // Button background color
+    },
 };
 
 const styles = StyleSheet.create({
     view: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        height: '100%',
+        overflow: 'scroll',
+        backgroundColor: '#EEEEEE',
+        paddingTop: 20,
+        paddingBottom: 20
     },
     card : {
-        width : "90%"
+        width: '90%',
+        margin: '5%',
+        backgroundColor: '#FFFFFF'
+    },
+    title: {
+        fontSize: 25,
+        fontWeight: '700',
+        marginTop: 10,
+        marginBottom: 5
+    },
+    content: {
+        fontSize: 15,
+        marginTop: 10,
+        marginBottom: 5
+    },
+    actions: {
+        display: 'flex',
+        justifyContent: 'flex-end'
+    },
+    button: {
+        fontSize: 15,
+        marginLeft: 10
     }
 });
 
