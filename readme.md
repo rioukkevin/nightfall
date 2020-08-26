@@ -1,16 +1,16 @@
 # API
 
-##Instalation
+## Instalation
 
-cd api
-npm install
-cp .env.default .env
-npm run dev
+- cd api
+- npm install
+- cp .env.default .env
+- npm run dev
 
 # React Native
 
-##Instalation
+## Instalation
 
-cd nighfall
-npm install
-expo start
+- cd nighfall
+- npm install
+- expo start
