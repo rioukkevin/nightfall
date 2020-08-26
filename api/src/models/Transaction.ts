@@ -1,4 +1,5 @@
 import { model, Schema, Model, Document } from "mongoose";
+import { IEstablishment } from "./Establishment";
 
 const TransactionSchema : Schema = new Schema({
   establishment_id : {
@@ -13,8 +14,21 @@ const TransactionSchema : Schema = new Schema({
     type : Date,
     default : Date.now
   },
+  establishment : {
+    type : Schema.Types.ObjectId,
+    ref : 'establishments'
+  }
 })
 
-const Transaction: Model<Document> = model('transactions', TransactionSchema)
+interface ITransaction {
+  establishment_id: string;
+  user_id: string;
+  date: string;
+  establishment: IEstablishment
+}
 
-export { Transaction }
+type TransactionType = ITransaction & Document;
+
+const TransactionModel: Model<Document> = model('transactions', TransactionSchema)
+
+export { TransactionModel, ITransaction, TransactionType }
