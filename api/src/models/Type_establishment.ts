@@ -1,15 +1,23 @@
 import { Document, model, Model, Schema } from "mongoose";
 
-const TypeEstablishmentSchema: Schema = new Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-});
+const TypeEstablishmentSchema : Schema = new Schema({
+  name : {
+    type : String,
+    required : true
+  },
+  points : {
+    type : Number,
+    required : true
+  }
+})
 
-const TypeEstablishment: Model<Document> = model(
-    "establishmentType",
-    TypeEstablishmentSchema
-);
+interface ITypeEstablishment {
+  name: string;
+  points: number;
+}
 
-export { TypeEstablishment };
+type TypeEstablishmentType = ITypeEstablishment & Document;
+
+const TypeEstablishment: Model<Document> = model("establishmenttypes", TypeEstablishmentSchema);
+
+export { TypeEstablishment, ITypeEstablishment, TypeEstablishmentType };

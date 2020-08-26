@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Text, Image, View} from 'react-native';
+import {Image, View} from 'react-native';
 import * as AuthService from '../../services/auth';
-import {Modal, Provider, Portal, Button} from 'react-native-paper';
+import {Modal, Provider, Portal, Button, Text} from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LayoutHome from "./LayoutHome";
 import {AnimatedCircularProgress} from "react-native-circular-progress";

@@ -3,7 +3,7 @@ import { bar, nightClub, restaurant } from "./establishmentType.mock";
 
 export const establishments: Establishment[] = [
     {
-        id: "1",
+        id: 1,
         name: "James Joyce",
         type: bar,
         address: {
@@ -18,7 +18,7 @@ export const establishments: Establishment[] = [
         },
     },
     {
-        id: "2",
+        id: 2,
         name: "Le Hangar à Mousses",
         type: bar,
         address: {
@@ -33,7 +33,7 @@ export const establishments: Establishment[] = [
         },
     },
     {
-        id: "3",
+        id: 3,
         name: "L'Hoirie",
         type: restaurant,
         address: {
@@ -48,7 +48,7 @@ export const establishments: Establishment[] = [
         },
     },
     {
-        id: "4",
+        id: 4,
         name: "La Chapelle",
         type: nightClub,
         address: {
@@ -64,7 +64,7 @@ export const establishments: Establishment[] = [
     },
 
     {
-        id: "5",
+        id: 5,
         name: "Le Carré",
         type: nightClub,
         address: {

@@ -1,13 +1,14 @@
 import express, { Request, Response, Router } from 'express';
-import { Transaction } from '../models/Transaction';
+import { TransactionModel } from '../models/Transaction';
+import { UserModel, UserType, IUser } from '../models/User';
 
 const transactionsRoutes: Router = express.Router();
 
 transactionsRoutes.post('/create/:establishment_id', async (req : Request, res: Response) => {
-  //TODO remplace par le user connecté
-  const transaction = new Transaction({
+  const user : UserType = (await UserModel.findById((<UserType>req.user).id))!;
+  const transaction = new TransactionModel({
     establishment_id : req.params.establishment_id,
-    user_id : 1,
+    user_id : user._id,
     date : Date.now()
   })
   transaction.save();

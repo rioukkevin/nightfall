@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 // import { withNavigationFocus } from '@react-navigation/compat';
-import { Surface, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
 
 interface IBarcodeProps {
     flash: string;
@@ -19,9 +19,7 @@ const Barcode: FC<IBarcodeProps> = (props) => {
     const navigator = useNavigation();
     navigator.addListener("blur", () => {
         setLoaded(false)
-        // if(cameraRef.current){
-        //     cameraRef.current.pausePreview()
-        // }
+        setScanned(false) 
     })
     navigator.addListener("focus", () => {
         setLoaded(true)
@@ -39,7 +37,10 @@ const Barcode: FC<IBarcodeProps> = (props) => {
 
     const handleBarCodeScanned = (scanningResult: BarCodeScanningResult) => {
         setScanned(true);
-        props.callback(scanningResult);
+        props.callback(scanningResult)
+        setTimeout(() => {
+            setScanned(false) 
+        }, 1000);
     };
 
     if (hasPermission === null) {
