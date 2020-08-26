@@ -18,6 +18,6 @@ interface ITypeEstablishment {
 
 type TypeEstablishmentType = ITypeEstablishment & Document;
 
-const TypeEstablishment: Model<Document> = model("establishmenttypes", TypeEstablishmentSchema);
+const TypeEstablishment: Model<TypeEstablishmentType> = model("establishmentTypes", TypeEstablishmentSchema);
 
 export { TypeEstablishment, ITypeEstablishment, TypeEstablishmentType };

@@ -8,3 +8,9 @@ connectToDb();
 fakeEstablishments();
 fakeUsers();
 fakeTransactions();
+
+Promise.all([
+    fakeEstablishments(),
+    fakeUsers(),
+    fakeTransactions(),
+]).finally(() => console.log("Mocks added"));

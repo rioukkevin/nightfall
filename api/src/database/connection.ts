@@ -14,7 +14,7 @@ const connectToDb = () => {
         },
         (error) => {
             console.log(
-                `Error while trying to connect to the mongo database : ${error.message}`
+                `Error while trying to connect to the mongo database : ${error?.message ?? ""}`
             );
         }
     );
