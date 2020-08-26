@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Text, List, Badge} from 'react-native-paper';
 import LayoutHome from "./Home/LayoutHome";
 import * as ScoreService from '../services/score';
+import ItemScore from '../components/ItemScore';
 
 const ScoresScreen = () => {
 
@@ -18,18 +19,14 @@ const ScoresScreen = () => {
 
   const scores =  [
     {
-      user : {
-        id : 5,
-        login : 'antoine',
-        countPointsLastMonth : 795
-      }
+      id : 5,
+      login : 'antoine',
+      countPointsLastMonth : 795
     },
-    {
-      user : {
-        id : 6,
-        login : 'paul',
-        countPointsLastMonth : 789
-      },
+    {     
+      id : 6,
+      login : 'paul',
+      countPointsLastMonth : 789
     },
   ]
 
@@ -37,10 +34,7 @@ const ScoresScreen = () => {
     <LayoutHome>
       <List.Section>
         {scores.map( (value) => {
-          return <
-            View>
-              <Text>{value.user.login} {value.user.countPointsLastMonth}</Text>
-            </View>
+          return <ItemScore user={value}></ItemScore>
         })}
       </List.Section>
     </LayoutHome>
