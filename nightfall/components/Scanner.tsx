@@ -7,7 +7,7 @@ import { Text } from "react-native-paper";
 
 interface IBarcodeProps {
     flash: string;
-    callback: Function ;
+    callback: Function;
 }
 
 const Barcode: FC<IBarcodeProps> = (props) => {

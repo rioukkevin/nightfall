@@ -1,24 +1,28 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import {usersRoutes} from './routes/users';
-import {establishmentsRoutes} from './routes/establishments';
-import {transactionsRoutes} from './routes/transactions';
-import { connection } from './database/connection';
+import bodyParser from "body-parser";
+import express from "express";
+import configureAuthentication from "./config/passport.config";
+import { connectToDb } from "./database/connection";
+import appRouter from "./routes";
 
-connection()
-
+//Express application
 const app: express.Express = express();
 
-//Routes users
-app.use('/users', usersRoutes)
+//#region Configuration
+/**Database connection */
+connectToDb();
 
-//Routes establishments
-app.use('/establishments', establishmentsRoutes)
+/**Configure authentication */
+configureAuthentication();
 
-//Routes transactions
-app.use('/transactions', transactionsRoutes)
+//#endregion
 
-//Init body-parser
-app.use(bodyParser.json())
+//#region Middlewares
+///**Allow to use req.body into route handlers */
+app.use(bodyParser.json());
+//#endregion
 
-app.listen(3000, () => console.log('Server running !'));
+/**Application routing */
+app.use(appRouter);
+
+/**Start app */
+app.listen(3000, () => console.log("Server running !"));
