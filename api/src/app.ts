@@ -3,7 +3,6 @@ import express from "express";
 import configureAuthentication from "./config/passport.config";
 import { connectToDb } from "./database/connection";
 import appRouter from "./routes";
-import { getRanking } from "./services/user.service";
 
 //Express application
 const app: express.Express = express();

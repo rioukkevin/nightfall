@@ -1,10 +1,11 @@
 import { IUser, UserModel } from "../models/User";
+import { connectToDb } from "../database/connection";
 
 interface UserPoints {
     user: IUser;
     points: number;
 }
-export const getRanking = async () => {
+const getRanking = async () => {
     // const ranking: UserPoints[] = [];
     // const users = await UserModel.find().exec();
     // users.forEach(async (user) => {
@@ -16,34 +17,43 @@ export const getRanking = async () => {
     //     })
 
     // });
-    const result = UserModel.aggregate([
-        {
-            $lookup: {
-                from: "transactions",
-                localField: "_id",
-                foreignField: "user_id",
-                as: "transactions",
+    try {
+        connectToDb();
+        const result = await UserModel.aggregate([
+            {
+                $lookup: {
+                    from: "transactions",
+                    localField: "_id",
+                    foreignField: "user_id",
+                    as: "transactions",
+                },
             },
-        },
-        {
-            $lookup: {
-                from: "establishments",
-                localField: "_id",
-                foreignField: "establishment_id",
-                as: "establishments",
+            {
+                $unwind: "$transactions",
             },
-        },
-        {
-            $lookup: {
-                from: "establishmentTypes",
-                localField: "_id",
-                foreignField: "establishment_type_id",
-                as: "establishmentTypes",
+            {
+                $lookup: {
+                    from: "establishments",
+                    localField: "_id",
+                    foreignField: "establishment_id",
+                    as: "establishments",
+                },
             },
-        },
-    ])
-        .exec()
-        .then((users: any[]) => {
-            console.log(users);
-        });
+            {
+                $lookup: {
+                    from: "establishmentTypes",
+                    localField: "_id",
+                    foreignField: "establishment_type_id",
+                    as: "establishmentTypes",
+                },
+            },
+        ]);
+        console.log(result);
+    } catch (error) {
+        console.log("error", error);
+    }
 };
+
+getRanking().finally(() => {
+    console.log("Fin");
+});
