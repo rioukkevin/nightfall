@@ -1,12 +1,13 @@
 import * as React from 'react';
-import {View} from 'react-native';
-import {Text, List, Badge} from 'react-native-paper';
+import { StyleSheet } from "react-native";
+import { DataTable } from 'react-native-paper';
 import LayoutHome from "./Home/LayoutHome";
 import * as ScoreService from '../services/score';
 import ItemScore from '../components/ItemScore';
 
 const ScoresScreen = () => {
 
+  //TODO en attente du backend
   // let [scores, setScores] = React.useState([]);
 
   // React.useEffect( () => {
@@ -32,13 +33,23 @@ const ScoresScreen = () => {
 
    return (
     <LayoutHome>
-      <List.Section>
+      <DataTable style={styles.container}>
+        <DataTable.Header>
+          <DataTable.Title>Utilisateur</DataTable.Title>
+          <DataTable.Title numeric>Points</DataTable.Title>
+        </DataTable.Header>
         {scores.map( (value) => {
           return <ItemScore user={value}></ItemScore>
         })}
-      </List.Section>
+      </DataTable>
     </LayoutHome>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+      width: "70%",
+  },
+});
 
 export default ScoresScreen

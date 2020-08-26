@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Text } from 'react-native-paper';
+import { DataTable } from 'react-native-paper';
 import User from "../models/User";
 
 interface IscoreItem {
@@ -8,7 +8,10 @@ interface IscoreItem {
 
 const ItemScore: FC<IscoreItem> = (props) => {
   return (
-    <Text>{props.user.login} {props.user.countPointsLastMonth}</Text>
+    <DataTable.Row>
+      <DataTable.Cell>{props.user.login}</DataTable.Cell>
+      <DataTable.Cell numeric>{props.user.countPointsLastMonth}</DataTable.Cell>
+    </DataTable.Row>
   );
 };
 
