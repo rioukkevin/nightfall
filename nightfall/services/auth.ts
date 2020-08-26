@@ -1,31 +1,15 @@
 import User from "../models/User";
-import Constants from 'expo-constants';
+import fetchRequest from "../models/FetchRequest";
 
 /**
  * Get authenticate user
  */
 export const getAuthUser = async (): Promise<User> => {
 
-    var myHeaders = new Headers();
-
-    var myInit: RequestInit = {
-        method: 'GET',
-        headers: myHeaders,
-        cache: 'default'
-    };
-
-    var myRequest = new Request(Constants.manifest.extra.BASE_URL + "/employees", myInit);
-
-    console.log("myRequest");
-    console.log(myRequest);
-
-    // fetch(myRequest/* , myInit */)
-    fetch("192.168.1.31:3000/employees"/* , myInit */)
-        .then((response) => {
-            console.log("response")
-            console.log(response)
-        }
-        );
+    let result = await fetchRequest({path: "/establishments", method: "GET"})
+    
+    console.log("result");
+    console.log(result);
 
     return {
         id: 1,
