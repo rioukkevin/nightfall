@@ -1,9 +1,16 @@
 import User from "../models/User";
+import fetchRequest from "../models/FetchRequest";
 
 /**
  * Get authenticate user
  */
-export const getAuthUser = (): User => {
+export const getAuthUser = async (): Promise<User> => {
+
+    let result = await fetchRequest({path: "/establishments", method: "GET"})
+    
+    console.log("result");
+    console.log(result);
+
     return {
         id: 1,
         login: "AG49",
