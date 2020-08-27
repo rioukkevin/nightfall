@@ -16,3 +16,8 @@ web-build/
 node_modules/
 /.expo
 dist/
+/nightfall/.expo
+/nightfall/.expo-shared
+/nightfall/yarn-error.log
+/nightfall/yarn.lock
+/nightfall/package-lock.json

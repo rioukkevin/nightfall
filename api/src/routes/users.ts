@@ -1,10 +1,7 @@
-import express, { Request, Response, Router } from "express";
+import express, {Request, Response, Router} from "express";
 import moment from "moment";
-import {
-  countPointsLastMonth, countPointsLastYear, UserModel,
-  UserType
-} from "../models/User";
-import { getRanking } from "../services/user.service";
+import {countPointsLastMonth, countPointsLastYear, UserModel, UserType} from "../models/User";
+import {getRanking} from "../services/user.service";
 
 const usersRoutes: Router = express.Router();
 
@@ -34,4 +31,4 @@ usersRoutes.get("/:id", async (req: Request, res: Response) => {
     });
 });
 
-export { usersRoutes };
+export {usersRoutes};

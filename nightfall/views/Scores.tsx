@@ -40,8 +40,8 @@ const ScoresScreen = () => {
           return <ItemScore score={value}></ItemScore>
         })}
       </DataTable>
-      <Button style={styles.button} disabled={btnDisabled} color='#666' mode="contained" onPress={() => changePediod() }>
-        Voir la classement par {period === 'year' ? 'année' : 'mois'} 
+      <Button style={styles.button} disabled={btnDisabled} color='#fea500' mode="contained" onPress={() => changePediod() }>
+        Voir le classement par {period === 'year' ? 'année' : 'mois'} 
       </Button>
     </LayoutHome>
   );

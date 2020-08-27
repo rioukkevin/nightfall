@@ -19,7 +19,8 @@ const LayoutHomeScreen = (props: any) => {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: "column",
+    width: '100%'
   },
   image: {
     flex: 1,

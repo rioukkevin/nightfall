@@ -18,17 +18,6 @@ const NewsScreen = () => {
     );
 };
 
-const lightTheme = {
-    ...DefaultTheme,
-    dark: false,
-    colors: {
-        ...DefaultTheme.colors,
-        text: "#FFFFFF",
-        primary: "#003348", // Brand color
-        accent: "#fea500", // Button background color
-    },
-};
-
 const styles = StyleSheet.create({
     view: {
         height: "100%",
@@ -36,30 +25,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#EEEEEE",
         paddingTop: 20,
         paddingBottom: 20,
-    },
-    card: {
-        width: "90%",
-        margin: "5%",
-        backgroundColor: "#FFFFFF",
-    },
-    title: {
-        fontSize: 25,
-        fontWeight: "700",
-        marginTop: 10,
-        marginBottom: 5,
-    },
-    content: {
-        fontSize: 15,
-        marginTop: 10,
-        marginBottom: 5,
-    },
-    actions: {
-        display: "flex",
-        justifyContent: "flex-end",
-    },
-    button: {
-        fontSize: 15,
-        marginLeft: 10,
     },
 });
 

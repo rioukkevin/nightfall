@@ -1,6 +1,5 @@
 import moment from "moment";
-import UserPointsDto from "../dto/UserPointsDto";
-import { countPoints, UserModel } from "../models/User";
+import {countPoints, UserModel} from "../models/User";
 import RankingResultDto from "../dto/RankingResultDto";
 
 /**
@@ -39,4 +38,4 @@ const getRanking = async (
     return result;
 };
 
-export { getRanking };
+export {getRanking};
