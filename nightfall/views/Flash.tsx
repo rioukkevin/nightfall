@@ -34,7 +34,7 @@ const FlashScreen = () => {
   }
 
   const onFlash = async (scanningResult: BarCodeScanningResult) => {
-    await postTransaction(scanningResult.data)
+    await postTransaction(scanningResult.data);
     fadeIn()
   }
   const onNext = () => {
