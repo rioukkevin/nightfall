@@ -1,4 +1,4 @@
-import { Document, model, Model, Schema } from "mongoose";
+import {Document, model, Model, Schema} from "mongoose";
 
 const TypeEstablishmentSchema: Schema = new Schema({
     name: {
@@ -9,11 +9,16 @@ const TypeEstablishmentSchema: Schema = new Schema({
         type: Number,
         required: true,
     },
+    color: {
+        type: String,
+        required: true,
+    }
 });
 
 interface ITypeEstablishment {
     name: string;
     points: number;
+    color: string;
 }
 
 type TypeEstablishmentType = ITypeEstablishment & Document;
