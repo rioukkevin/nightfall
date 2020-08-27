@@ -20,7 +20,7 @@ const fakeTransactions = async function () {
             Math.random() * (users.length - 1)
         );
         const transaction = new TransactionModel({
-            establishment_id: establishments[index_establishment_ramdom]._id,
+            establishment: establishments[index_establishment_ramdom]._id,
             user_id: users[index_user_ramdom]._id,
             date: Date.now(),
         });

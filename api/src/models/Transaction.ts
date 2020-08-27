@@ -1,7 +1,7 @@
 import { Document, model, Model, Schema } from "mongoose";
 
 const TransactionSchema : Schema = new Schema({
-  establishment_id : {
+  establishment : {
     type : Schema.Types.ObjectId,
     ref : 'establishments'
   },
@@ -16,7 +16,7 @@ const TransactionSchema : Schema = new Schema({
 })
 
 interface ITransaction {
-  establishment_id: Schema.Types.ObjectId;
+  establishment: Schema.Types.ObjectId;
   user_id: string;
   date: string;
 }

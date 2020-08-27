@@ -16,7 +16,7 @@ const fakeEstablishments = async function () {
 
     const establishments = [
         new EstablishmentModel({
-            establishment_type_id: type_bar?._id,
+            establishment_type: type_bar?._id,
             name: "La Civette",
             address: {
                 number: "2",
@@ -30,7 +30,7 @@ const fakeEstablishments = async function () {
             },
         }),
         new EstablishmentModel({
-            establishment_type_id: type_bar?._id,
+            establishment_type: type_bar?._id,
             name: "Le James Joyce",
             address: {
                 number: "40",
@@ -44,7 +44,7 @@ const fakeEstablishments = async function () {
             },
         }),
         new EstablishmentModel({
-            establishment_type_id: type_resto?._id,
+            establishment_type: type_resto?._id,
             name: "Chez Pont-pont",
             address: {
                 number: "13",
@@ -58,7 +58,7 @@ const fakeEstablishments = async function () {
             },
         }),
         new EstablishmentModel({
-            establishment_type_id: type_resto?._id,
+            establishment_type: type_resto?._id,
             name: "La Ferme",
             address: {
                 number: "2",
@@ -72,7 +72,7 @@ const fakeEstablishments = async function () {
             },
         }),
         new EstablishmentModel({
-            establishment_type_id: type_discotheque?._id,
+            establishment_type: type_discotheque?._id,
             name: "La Carré",
             address: {
                 number: "15",

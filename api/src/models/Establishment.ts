@@ -5,7 +5,7 @@ const EstablishmentSchema: Schema = new Schema({
         type: String,
         require: true,
     },
-    establishment_type_id: {
+    establishment_type: {
         type: Schema.Types.ObjectId,
         ref: "establishmenttypes",
     },
@@ -40,7 +40,7 @@ const EstablishmentSchema: Schema = new Schema({
 });
 interface IEstablishment {
     name: string;
-    establishment_type_id: Schema.Types.ObjectId;
+    establishment_type: Schema.Types.ObjectId;
     address: {
         number: string;
         street: string;
