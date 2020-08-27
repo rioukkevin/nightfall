@@ -22,7 +22,6 @@ const seed = async () => {
         const type_establishment = type_establishments[index];
 
         await type_establishment.save();
-        console.log(type_establishment);
     }
 
     type_establishments.forEach(async (type_establishment) => {
@@ -32,7 +31,6 @@ const seed = async () => {
         }).exec();
         if (!typeDocs?.length) {
             await type_establishment.save();
-            console.log(type_establishment);
         }
     });
 };
