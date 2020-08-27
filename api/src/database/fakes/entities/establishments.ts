@@ -16,7 +16,7 @@ const fakeEstablishments = async function () {
 
     const establishments = [
         new EstablishmentModel({
-            establishment_type_id: type_bar?._id.toString(),
+            establishment_type_id: type_bar?._id,
             name: "La Civette",
             address: {
                 number: "2",
@@ -28,10 +28,9 @@ const fakeEstablishments = async function () {
                     longitude: -0.551635,
                 },
             },
-            establishment_type: type_bar?._id.toString(),
         }),
         new EstablishmentModel({
-            establishment_type_id: type_bar?._id.toString(),
+            establishment_type_id: type_bar?._id,
             name: "Le James Joyce",
             address: {
                 number: "40",
@@ -43,10 +42,9 @@ const fakeEstablishments = async function () {
                     longitude: -0.545825,
                 },
             },
-            establishment_type: type_bar?._id.toString(),
         }),
         new EstablishmentModel({
-            establishment_type_id: type_resto?._id.toString(),
+            establishment_type_id: type_resto?._id,
             name: "Chez Pont-pont",
             address: {
                 number: "13",
@@ -58,10 +56,9 @@ const fakeEstablishments = async function () {
                     longitude: -0.558083,
                 },
             },
-            establishment_type: type_resto?._id.toString(),
         }),
         new EstablishmentModel({
-            establishment_type_id: type_resto?._id.toString(),
+            establishment_type_id: type_resto?._id,
             name: "La Ferme",
             address: {
                 number: "2",
@@ -73,10 +70,9 @@ const fakeEstablishments = async function () {
                     longitude: -0.555754,
                 },
             },
-            establishment_type: type_resto?._id.toString(),
         }),
         new EstablishmentModel({
-            establishment_type_id: type_discotheque?._id.toString(),
+            establishment_type_id: type_discotheque?._id,
             name: "La Carré",
             address: {
                 number: "15",
@@ -88,7 +84,6 @@ const fakeEstablishments = async function () {
                     longitude: -0.553601,
                 },
             },
-            establishment_type: type_discotheque?._id.toString(),
         }),
     ];
 

@@ -1,13 +1,13 @@
 import { Document, model, Model, Schema } from "mongoose";
-import { ITypeEstablishment } from "./Type_establishment";
+
 const EstablishmentSchema: Schema = new Schema({
     name: {
         type: String,
         require: true,
     },
     establishment_type_id: {
-        type: String,
-        required: true,
+        type: Schema.Types.ObjectId,
+        ref: "establishmenttypes",
     },
     address: {
         number: {
@@ -37,14 +37,10 @@ const EstablishmentSchema: Schema = new Schema({
             },
         },
     },
-    establishment_type: {
-        type: Schema.Types.ObjectId,
-        ref: "establishmenttypes",
-    },
 });
 interface IEstablishment {
     name: string;
-    establishment_type_id: string;
+    establishment_type_id: Schema.Types.ObjectId;
     address: {
         number: string;
         street: string;
@@ -55,7 +51,6 @@ interface IEstablishment {
             longitude: number;
         };
     };
-    establishment_type: ITypeEstablishment;
 }
 type EstablishmentType = IEstablishment & Document;
 const EstablishmentModel: Model<EstablishmentType> = model(

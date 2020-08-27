@@ -1,30 +1,24 @@
 import { Document, model, Model, Schema } from "mongoose";
-import { IEstablishment } from "./Establishment";
 
-const TransactionSchema: Schema = new Schema({
-    establishment_id: {
-        type: Schema.Types.ObjectId,
-        required: true,
-    },
-    user_id: {
-        type: Schema.Types.ObjectId,
-        required: true,
-    },
-    date: {
-        type: Date,
-        default: Date.now,
-    },
-    establishment: {
-        type: Schema.Types.ObjectId,
-        ref: "establishments",
-    },
-});
+const TransactionSchema : Schema = new Schema({
+  establishment_id : {
+    type : Schema.Types.ObjectId,
+    ref : 'establishments'
+  },
+  user_id : {
+    type : String,
+    required : true
+  },
+  date : {
+    type : Date,
+    default : Date.now
+  }
+})
 
 interface ITransaction {
-    establishment_id: string;
-    user_id: string;
-    date: string;
-    establishment: IEstablishment;
+  establishment_id: Schema.Types.ObjectId;
+  user_id: string;
+  date: string;
 }
 
 type TransactionType = ITransaction & Document;
