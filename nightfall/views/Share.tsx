@@ -24,11 +24,11 @@ class ShareScreen extends React.Component<any, any> {
 
         this.state = {
             firstname : '',
-            data: {
-                facebook: getFacebookDatas(),
-                twitter: getTwitterDatas(),
-                instagram: getInstagramDatas(),
-            }
+            // data: {
+            //     facebook: getFacebookDatas(),
+            //     twitter: getTwitterDatas(),
+            //     instagram: getInstagramDatas(),
+            // }
         }
         this.loadUser();
     }
