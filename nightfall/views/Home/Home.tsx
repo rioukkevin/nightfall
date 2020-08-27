@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import { Image, View, StyleSheet, Animated, AsyncStorage } from 'react-native';
 import * as AuthService from '../../services/auth';
-import { Modal, Surface, FAB, Button, Text } from 'react-native-paper';
+import { Modal, Surface, FAB, Button, Text, Snackbar } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LayoutHome from "./LayoutHome";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
@@ -17,11 +17,15 @@ import CardsImage from '../../assets/cards.png';
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [open, setOpen] = React.useState(false);
+  const [successLogin, setSuccessLogin] = React.useState(false);
 
   const fadeAnimInfo = useRef(new Animated.Value(100)).current;
 
   const goRanking = () =>  {
     navigation.navigate('Root', { screen: 'Home', params: { screen: 'Scores' }});
+  }
+  const dismiss = () =>  {
+    console.log('That\'s the end boys')
   }
 
   const fadeInInfo = () => {
@@ -64,7 +68,12 @@ const HomeScreen = () => {
 
   React.useEffect( () => {
     loadUser();
-  });
+    setSuccessLogin(true)
+
+    setTimeout(() => {
+      setSuccessLogin(false)
+    }, 3000);
+  }, []);
 
   const loadUser = async () => {
     try {
@@ -76,13 +85,6 @@ const HomeScreen = () => {
 
     } catch (err) {
       console.log(err);
-    }
-
-    {
-      const userLogin : any = await AuthService.loginUser("admin@admin.fr", "Not24get")
-      const bearerToken = userLogin.token;
-      // On stocker et utiliser le bearer token
-      await AsyncStorage.setItem('BEARER_TOKEN', bearerToken)
     }
     
     
@@ -159,6 +161,10 @@ const HomeScreen = () => {
           onStateChange={onStateChange}
         />
       </View>
+      <Snackbar
+        visible={successLogin} duration={2000} onDismiss={dismiss}>
+        Connexion réussie
+      </Snackbar>
     </LayoutHome>
   );
 };
