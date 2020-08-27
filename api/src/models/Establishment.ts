@@ -1,4 +1,4 @@
-import { Document, model, Model, Schema } from "mongoose";
+import {Document, model, Model, Schema} from "mongoose";
 
 const EstablishmentSchema: Schema = new Schema({
     name: {
@@ -7,24 +7,24 @@ const EstablishmentSchema: Schema = new Schema({
     },
     establishment_type: {
         type: Schema.Types.ObjectId,
-        ref: "establishmenttypes",
+        ref: "establishmentTypes",
     },
     address: {
         number: {
             type: String,
-            required: false,
+            required: true,
         },
         street: {
             type: String,
-            required: false,
+            required: true,
         },
         zipCode: {
             type: String,
-            required: false,
+            required: true,
         },
         city: {
             type: String,
-            required: false,
+            required: true,
         },
         coordinate: {
             latitude: {

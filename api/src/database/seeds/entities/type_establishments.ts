@@ -1,21 +1,21 @@
-import {
-    TypeEstablishmentModel,
-    TypeEstablishmentType,
-} from "../../../models/Type_establishment";
+import {TypeEstablishmentModel, TypeEstablishmentType,} from "../../../models/Type_establishment";
 
 const seed = async () => {
     const type_establishments: Array<TypeEstablishmentType> = [
         new TypeEstablishmentModel({
             name: "Bar",
             points: 25,
+            color: "pink",
         }),
         new TypeEstablishmentModel({
             name: "Restaurant",
             points: 40,
+            color: "blue",
         }),
         new TypeEstablishmentModel({
             name: "Discothèque",
             points: 15,
+            color: "yellow",
         }),
     ];
     for (let index = 0; index < type_establishments.length; index++) {
@@ -25,7 +25,7 @@ const seed = async () => {
         console.log(type_establishment);
     }
 
-    type_establishments.forEach(async (type_establishment) => {
+    for (const type_establishment of type_establishments) {
         //Search if it not exists
         const typeDocs = await TypeEstablishmentModel.find({
             name: type_establishment.name,
@@ -34,7 +34,7 @@ const seed = async () => {
             await type_establishment.save();
             console.log(type_establishment);
         }
-    });
+    }
 };
 
 export { seed };
