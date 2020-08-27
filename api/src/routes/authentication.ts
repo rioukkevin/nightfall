@@ -71,7 +71,6 @@ authenticationRoutes.post("/signup", async (req: Request, res: Response) => {
                 createUserDto.password,
                 PASSWORD_SALT_NUMBER
             ),
-            transactions: [],
         };
         //Create in db
         try {
