@@ -43,15 +43,7 @@ const TabNavigator = () => (
             }}
         ></Tab.Screen>
 
-        <Tab.Screen
-            name="HomePlus"
-            component={HomePlusScreen}
-            options={{
-                tabBarLabel: "HomePlus",
-                tabBarIcon: ({ color }) => getIcon("home", color),
-            }}
-        ></Tab.Screen>
-
+        {/**Score screen */}
         <Tab.Screen
             name="Scores"
             component={ScoresScreen}
