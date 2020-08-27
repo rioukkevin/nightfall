@@ -16,11 +16,17 @@ export default async function fetchRequest({ path, method, body }: { path: strin
     });
 
     const reqParams = new Request(Constants.manifest.extra.BASE_URL + path, {
-        method: method,
         headers: HEADERS,
         body: JSON.stringify(body),
     });
-    
-    return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).get().json();
 
+    switch (method) {
+        case "POST":
+            return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).post().json();
+            break;
+        case "GET":
+        default:
+            return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).get().json();
+            break;
+    }
 }

@@ -16,3 +16,4 @@ web-build/
 node_modules/
 /.expo
 dist/
+nightfall/.expo/packager-info.json
