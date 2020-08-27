@@ -3,14 +3,17 @@ import { DataTable } from 'react-native-paper';
 import User from "../models/User";
 
 interface IscoreItem {
-  user: User;
+  score : {
+    user: User,
+    points: Number
+  }
 }
 
 const ItemScore: FC<IscoreItem> = (props) => {
   return (
     <DataTable.Row>
-      <DataTable.Cell>{props.user.login}</DataTable.Cell>
-      <DataTable.Cell numeric>{props.user.countPointsLastMonth}</DataTable.Cell>
+      <DataTable.Cell>{props.score.user.firstname} {props.score.user.lastname}</DataTable.Cell>
+      <DataTable.Cell numeric>{props.score.points}</DataTable.Cell>
     </DataTable.Row>
   );
 };
