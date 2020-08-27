@@ -58,7 +58,7 @@ const TabNavigator = () => (
             component={NewsScreen}
             options={{
                 tabBarLabel: "Actualités",
-                tabBarIcon: ({ color }) => getIcon("newspaper-variant", color),
+                tabBarIcon: ({ color }) => getIcon("newspaper", color),
             }}
         ></Tab.Screen>
 
