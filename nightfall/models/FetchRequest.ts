@@ -1,6 +1,5 @@
 import Constants from 'expo-constants';
-import AsyncStorage from '@react-native-community/async-storage';
-import wretch from 'wretch'
+import wretch from 'wretch';
 
 export default async function fetchRequest({ path, method, body }: { path: string, method: string, body?: Object }): Promise<any> {
 
