@@ -7,15 +7,22 @@ import LayoutHome from "./LayoutHome";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { PieChart } from 'react-native-chart-kit'
 import Pie from '../../components/Pie'
+import { useNavigation } from '@react-navigation/native';
 
 // assets
 import LogoImage from '../../assets/logo-nightfall.png';
 import CardsImage from '../../assets/cards.png';
 
+
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const [open, setOpen] = React.useState(false);
 
   const fadeAnimInfo = useRef(new Animated.Value(100)).current;
+
+  const goRanking = () =>  {
+    navigation.navigate('Home', { screen: 'Scores' });
+  }
 
   const fadeInInfo = () => {
     Animated.timing(fadeAnimInfo, {
@@ -127,6 +134,11 @@ const HomeScreen = () => {
               icon: 'information-outline',
               label: 'Informations',
               onPress: fadeInInfo,
+            },
+            {
+              icon: 'podium-gold',
+              label: 'Classement',
+              onPress: goRanking,
             },
           ]}
           onStateChange={onStateChange}
