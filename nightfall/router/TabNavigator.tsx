@@ -8,6 +8,7 @@ import MapScreen from "../views/Map";
 import NewsScreen from "../views/News";
 import ShareScreen from "../views/Share";
 import { StyleSheet } from "react-native";
+import ScoresScreen from "../views/Scores";
 
 /**Component style */
 const style = StyleSheet.create({
@@ -47,6 +48,15 @@ const TabNavigator = () => (
             component={HomePlusScreen}
             options={{
                 tabBarLabel: "HomePlus",
+                tabBarIcon: ({ color }) => getIcon("home", color),
+            }}
+        ></Tab.Screen>
+
+        <Tab.Screen
+            name="Scores"
+            component={ScoresScreen}
+            options={{
+                tabBarLabel: "Scores",
                 tabBarIcon: ({ color }) => getIcon("home", color),
             }}
         ></Tab.Screen>

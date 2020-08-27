@@ -9,10 +9,21 @@ import {AnimatedCircularProgress} from "react-native-circular-progress";
 const HomeScreen = () => {
 
   const [visible, setVisible] = React.useState(false);
+  let [countPointsLastMonth, setCountPointsLastMonth] = React.useState(0);
+  let [firstname, setFirstname] = React.useState('');
+
   const showModalInformation = () => setVisible(true);
   const hideModalInformation = () => setVisible(false);
 
-  let countPointsLastMonth = AuthService.getAuthUser().countPointsLastMonth;
+  React.useEffect( () => {
+    loadUser();
+  });
+
+  const loadUser = async () => {
+    const user : any = await AuthService.getAuthUser()
+    setFirstname(user.firstname)
+    setCountPointsLastMonth(user.countPointsLastMonth)
+  }
 
   return (
     <LayoutHome>
@@ -46,12 +57,12 @@ const HomeScreen = () => {
           {
             (countPointsLastMonth) => (
               <Text>
-                {countPointsLastMonth} / 120004
+                {countPointsLastMonth} / 12000
               </Text>
             )
           }
         </AnimatedCircularProgress>
-        <Text>{AuthService.getAuthUser().login}</Text>
+        <Text>{firstname}</Text>
         <MaterialCommunityIcons name="account"/>
       </View>
       <Image source={{uri: "../assets/logo-nightfall.png"}}/>
