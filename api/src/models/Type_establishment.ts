@@ -1,15 +1,31 @@
-import { Document, model, Model, Schema } from "mongoose";
+import {Document, model, Model, Schema} from "mongoose";
 
 const TypeEstablishmentSchema: Schema = new Schema({
     name: {
         type: String,
         required: true,
     },
+    points: {
+        type: Number,
+        required: true,
+    },
+    color: {
+        type: String,
+        required: true,
+    }
 });
 
-const TypeEstablishment: Model<Document> = model(
-    "establishmentType",
+interface ITypeEstablishment {
+    name: string;
+    points: number;
+    color: string;
+}
+
+type TypeEstablishmentType = ITypeEstablishment & Document;
+
+const TypeEstablishmentModel: Model<TypeEstablishmentType> = model(
+    "establishmentTypes",
     TypeEstablishmentSchema
 );
 
-export { TypeEstablishment };
+export { TypeEstablishmentModel, ITypeEstablishment, TypeEstablishmentType };

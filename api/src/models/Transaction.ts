@@ -1,20 +1,31 @@
-import { model, Schema, Model, Document } from "mongoose";
+import { Document, model, Model, Schema } from "mongoose";
 
 const TransactionSchema : Schema = new Schema({
-  establishment_id : {
-    type : String,
-    required : true
+  establishment : {
+    type : Schema.Types.ObjectId,
+    ref : 'establishments'
   },
-  user_id : {
-    type : String,
-    required : true
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
   },
   date : {
     type : Date,
     default : Date.now
-  },
+  }
 })
 
-const Transaction: Model<Document> = model('transactions', TransactionSchema)
+interface ITransaction {
+  establishment: Schema.Types.ObjectId;
+  user: Schema.Types.ObjectId;
+  date: string;
+}
 
-export { Transaction }
+type TransactionType = ITransaction & Document;
+
+const TransactionModel: Model<TransactionType> = model(
+  "transactions",
+  TransactionSchema
+);
+
+export { TransactionModel, ITransaction, TransactionType };

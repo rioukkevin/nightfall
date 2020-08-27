@@ -8,12 +8,24 @@ import {AnimatedCircularProgress} from "react-native-circular-progress";
 
 const HomePlusScreen = () => {
 
-  let countPointsLastYear = AuthService.getAuthUser().countPointsLastYear;
-  let countPointsLastMonth = AuthService.getAuthUser().countPointsLastMonth;
+  let [countPointsLastMonth, setCountPointsLastMonth] = React.useState(0);
+  let [countPointsLastYear, setCountPointsLastYear] = React.useState(0);
+  let [firstname, setFirstname] = React.useState('');
+
+  React.useEffect( () => {
+    loadUser();
+  });
+  
+  const loadUser = async () => {
+    const user : any = await AuthService.getAuthUser()
+    setFirstname(user.firstname)
+    setCountPointsLastYear(user.countPointsLastYear)
+    setCountPointsLastMonth(user.countPointsLastMonth)
+  }
 
   return (
     <LayoutHome>
-      <Text>{AuthService.getAuthUser().login}</Text>
+      <Text>{firstname}</Text>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <AnimatedCircularProgress
           size={90}
