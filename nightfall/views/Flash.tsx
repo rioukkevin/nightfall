@@ -3,6 +3,7 @@ import { BarCodeScanningResult } from "expo-camera";
 import { StyleSheet, View, Animated } from 'react-native';
 import Scanner from '../components/Scanner'
 import { FAB, Surface, Text } from 'react-native-paper';
+import { postTransaction } from '../services/flash';
 // import { BlurView } from "expo-blur";
 
 const FlashScreen = () => {
@@ -32,7 +33,8 @@ const FlashScreen = () => {
     (flash === 'off') ? setFlash('torch') : setFlash('off')
   }
 
-  const onFlash = (scanningResult: BarCodeScanningResult) => {
+  const onFlash = async (scanningResult: BarCodeScanningResult) => {
+    await postTransaction(scanningResult.data)
     fadeIn()
   }
   const onNext = () => {
