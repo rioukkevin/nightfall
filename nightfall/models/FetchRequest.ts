@@ -10,16 +10,22 @@ export default async function fetchRequest({ path, method, body }: { path: strin
     // const bearer = await AsyncStorage.getItem('BEARER_TOKEN')
 
     const HEADERS = new Headers({
-        'Authorization': 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmFuc2FjdGlvbnMiOltdLCJfaWQiOiI1ZjQ3NzUzNTM3NmQzYzA1ZWI5MTg3ZjYiLCJmaXJzdG5hbWUiOiJhZG1pbiIsImxhc3RuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmZyIiwicGFzc3dvcmQiOiIkMmIkMTAkU2ZobWYvQ1JQQWFVUHpITlAwOHpiT013dVo3dUoxeVRsSHhKbmpwSzkxN0pHMkxKLlpnQmEiLCJfX3YiOjAsImlhdCI6MTU5ODUyMDM3MiwiZXhwIjoxNTk4NjA2NzcyfQ.PMk8YnGQsoXPiAjwjwb83NRF2kx6BWcDT2QKXHoCxZU",
+        'Authorization': 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ2NmFjZGE2NTA1MjI3MmYzNzc4ZmYiLCJ0cmFuc2FjdGlvbnMiOltdLCJmaXJzdG5hbWUiOiJhZG1pbiIsImxhc3RuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQGFkbWluLmZyIiwicGFzc3dvcmQiOiIkMmIkMTAkSlhwTHFJSlNKTXRtanJRTWJiN3N3ZWZmaExFUlcuU0dUQXdnYnBKTTFRTUVnNk5uUXJNdnUiLCJfX3YiOjAsImlhdCI6MTU5ODQ1MDQxNCwiZXhwIjoxNTk4NTM2ODE0fQ.JqYSQ9etNPzWNho0_xMLzh1oSO2SHItGQq1PnyZJwt8",
         'Content-Type': 'application/json'
     });
 
     const reqParams = new Request(Constants.manifest.extra.BASE_URL + path, {
-        method: method,
         headers: HEADERS,
         body: JSON.stringify(body),
     });
 
-    return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).get().json();
-
+    switch (method) {
+        case "POST":
+            return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).post().json();
+            break;
+        case "GET":
+        default:
+            return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).get().json();
+            break;
+    }
 }
