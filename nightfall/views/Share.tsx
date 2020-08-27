@@ -85,7 +85,7 @@ class ShareScreen extends React.Component<any, any> {
     loadUser = async () => {
         const user = await AuthService.getAuthUser()
         const firstname = user.firstname!
-        this.setState({ firstname : firstname.charAt(0).toUpperCase() + firstname.slice(1)  })
+        this.setState({ firstname : firstname.toUpperCase() })
     }
 
     render() {

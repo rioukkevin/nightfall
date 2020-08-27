@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import { Image, View, StyleSheet, Animated } from 'react-native';
+import { Image, View, StyleSheet, Animated, AsyncStorage } from 'react-native';
 import * as AuthService from '../../services/auth';
 import { Modal, Surface, FAB, Button, Text } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -67,10 +67,25 @@ const HomeScreen = () => {
   });
 
   const loadUser = async () => {
-    const user : any = await AuthService.getAuthUser()
-    setFirstname(user.firstname)
-    setCountPointsLastMonth(user.countPointsLastMonth)
-    setCountPointsLastYear(user.countPointsLastYear)
+    try {
+      const user : any = await AuthService.getAuthUser()
+
+      setFirstname(user.firstname)
+      setCountPointsLastMonth(user.countPointsLastMonth)
+      setCountPointsLastYear(user.countPointsLastYear)
+
+    } catch (err) {
+      console.log(err);
+    }
+
+    {
+      const userLogin : any = await AuthService.loginUser("admin@admin.fr", "Not24get")
+      const bearerToken = userLogin.token;
+      // On stocker et utiliser le bearer token
+      await AsyncStorage.setItem('BEARER_TOKEN', bearerToken)
+    }
+    
+    
   }
 
   const onStateChange = (state: { open: boolean}) => {

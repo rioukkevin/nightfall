@@ -15,4 +15,8 @@ export default interface News {
      * Image to display
      */
     image?: string;
+    /**
+     * Link of the article
+     */
+    link: string;
 }

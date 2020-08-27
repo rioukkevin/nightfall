@@ -7,8 +7,8 @@ const transactionsRoutes: Router = express.Router();
 transactionsRoutes.post('/create/:establishment_id', async (req : Request, res: Response) => {
   const user : UserType = (await UserModel.findById((<UserType>req.user).id))!;
   const transaction = new TransactionModel({
-    establishment_id : req.params.establishment_id,
-    user_id : user._id,
+    establishment : req.params.establishment_id,
+    user : user._id,
     date : Date.now()
   })
   transaction.save();
