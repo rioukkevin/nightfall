@@ -21,7 +21,7 @@ const fakeTransactions = async function () {
         );
         const transaction = new TransactionModel({
             establishment: establishments[index_establishment_ramdom]._id,
-            user_id: users[index_user_ramdom]._id,
+            user: users[index_user_ramdom]._id,
             date: Date.now(),
         });
         console.log("Transaction à ajouter", transaction);

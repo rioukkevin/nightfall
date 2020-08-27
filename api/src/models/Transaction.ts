@@ -5,9 +5,9 @@ const TransactionSchema : Schema = new Schema({
     type : Schema.Types.ObjectId,
     ref : 'establishments'
   },
-  user_id : {
-    type : String,
-    required : true
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
   },
   date : {
     type : Date,
@@ -17,15 +17,15 @@ const TransactionSchema : Schema = new Schema({
 
 interface ITransaction {
   establishment: Schema.Types.ObjectId;
-  user_id: string;
+  user: Schema.Types.ObjectId;
   date: string;
 }
 
 type TransactionType = ITransaction & Document;
 
 const TransactionModel: Model<TransactionType> = model(
-    "transactions",
-    TransactionSchema
+  "transactions",
+  TransactionSchema
 );
 
 export { TransactionModel, ITransaction, TransactionType };
