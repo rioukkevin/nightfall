@@ -5,11 +5,22 @@ const TypeEstablishmentSchema: Schema = new Schema({
         type: String,
         required: true,
     },
+    points: {
+        type: Number,
+        required: true,
+    },
 });
 
-const TypeEstablishment: Model<Document> = model(
-    "establishmentType",
+interface ITypeEstablishment {
+    name: string;
+    points: number;
+}
+
+type TypeEstablishmentType = ITypeEstablishment & Document;
+
+const TypeEstablishmentModel: Model<TypeEstablishmentType> = model(
+    "establishmentTypes",
     TypeEstablishmentSchema
 );
 
-export { TypeEstablishment };
+export { TypeEstablishmentModel, ITypeEstablishment, TypeEstablishmentType };

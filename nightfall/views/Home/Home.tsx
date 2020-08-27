@@ -51,20 +51,23 @@ const HomeScreen = () => {
     }).start();
   };
 
-  let countPointsLastYear = AuthService.getAuthUser().countPointsLastYear;
-  let countPointsLastMonth = AuthService.getAuthUser().countPointsLastMonth;
+  let [countPointsLastMonth, setCountPointsLastMonth] = React.useState(0);
+  let [countPointsLastYear, setCountPointsLastYear] = React.useState(0);
+  let [firstname, setFirstname] = React.useState('');
+
+  React.useEffect( () => {
+    loadUser();
+  });
+
+  const loadUser = async () => {
+    const user : any = await AuthService.getAuthUser()
+    setFirstname(user.firstname)
+    setCountPointsLastMonth(user.countPointsLastMonth)
+    setCountPointsLastYear(user.countPointsLastYear)
+  }
 
   const onStateChange = (state: { open: boolean}) => {
     setOpen(state.open)
-  }
-  const getPoints = () => {
-    const MAX = 12000;
-    let points = countPointsLastMonth
-    points = points ? points : 0
-    return [
-      { name: 'Points', population: points, color: 'rgba(254, 165, 0, 1)', legendFontColor: 'transparent', legendFontSize: 0 },
-      { name: 'Other', population: MAX - points, color: 'rgba(0, 0, 0, 0.8)', legendFontColor: 'transparent', legendFontSize: 0 },
-    ]
   }
 
   return (
@@ -96,7 +99,7 @@ const HomeScreen = () => {
               <Text style={{textTransform: 'uppercase', fontWeight: '700'}}>Acheter un autre jeu</Text>
               <Image style={styles.cards} source={CardsImage} />
             </Surface>
-            <Text style={styles.title}>{AuthService.getAuthUser().login}</Text>
+            <Text style={styles.title}>{firstname}</Text>
             <Surface style={styles.chartAccount}>
               <Pie style={{}} value={countPointsLastYear ? countPointsLastYear : 0} max={12000} text="Annuel"/>
               <Pie style={{}} value={countPointsLastMonth ? countPointsLastMonth : 0} max={1000} text="Mensuel"/>
@@ -104,10 +107,9 @@ const HomeScreen = () => {
           </View>
           <FAB icon="close" onPress={fadeOutAccount} style={styles.overlayClose} />
         </Animated.View>
-        <Text style={styles.title}>{AuthService.getAuthUser().login}</Text>
+        <Text style={styles.title}>{firstname}</Text>
         <Pie style={styles.chart} value={countPointsLastMonth ? countPointsLastMonth : 0} max={1000} text="Mensuel"/>
         <Image style={styles.logo} source={LogoImage} />
-        {/* <Portal> */}
         <FAB.Group
           fabStyle={styles.groupBtnAction}  
           visible={true}
@@ -129,8 +131,6 @@ const HomeScreen = () => {
           ]}
           onStateChange={onStateChange}
         />
-      {/* </Portal> */}
-      </View>
     </LayoutHome>
   );
 };

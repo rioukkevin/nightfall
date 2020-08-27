@@ -11,6 +11,7 @@ const app: express.Express = express();
 /**Database connection */
 connectToDb();
 
+
 /**Configure authentication */
 configureAuthentication();
 

@@ -1,5 +1,8 @@
 import { seed } from "./entities/type_establishments";
-import { connectToDb } from "./../connection";
+import { connectToDb } from "../connection";
 
 connectToDb();
-seed();
+seed().finally(() => {
+    console.log("All seeds have been added");
+    process.exit();
+});

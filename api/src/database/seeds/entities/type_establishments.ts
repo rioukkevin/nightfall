@@ -1,24 +1,37 @@
-import { TypeEstablishment } from "../../../models/Type_establishment";
+import {
+    TypeEstablishmentModel,
+    TypeEstablishmentType,
+} from "../../../models/Type_establishment";
 
-const seed = function () {
-    const type_establishments: Array<string> = [
-        "Bar",
-        "Restaurant",
-        "Discothèque",
+const seed = async () => {
+    const type_establishments: Array<TypeEstablishmentType> = [
+        new TypeEstablishmentModel({
+            name: "Bar",
+            points: 25,
+        }),
+        new TypeEstablishmentModel({
+            name: "Restaurant",
+            points: 40,
+        }),
+        new TypeEstablishmentModel({
+            name: "Discothèque",
+            points: 15,
+        }),
     ];
+    for (let index = 0; index < type_establishments.length; index++) {
+        const type_establishment = type_establishments[index];
 
-    type_establishments.forEach((type_establishment_name) => {
-        TypeEstablishment.find({ name: "Bar" })
-            .exec()
-            .then((doc) => {
-                if (!doc.length) {
-                    const type_establishment = new TypeEstablishment({
-                        name: type_establishment_name,
-                    });
-                    type_establishment.save();
-                    console.log(type_establishment);
-                }
-            });
+        await type_establishment.save();
+    }
+
+    type_establishments.forEach(async (type_establishment) => {
+        //Search if it not exists
+        const typeDocs = await TypeEstablishmentModel.find({
+            name: type_establishment.name,
+        }).exec();
+        if (!typeDocs?.length) {
+            await type_establishment.save();
+        }
     });
 };
 

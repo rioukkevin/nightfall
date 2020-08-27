@@ -1,0 +1,4 @@
+app.config.ts
+.expo/
+.expo-shared/
+node_modules
