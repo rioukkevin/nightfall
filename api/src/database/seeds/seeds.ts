@@ -1,5 +1,5 @@
-import { seed } from './entities/type_establishments';
-import { connection } from './../connection';
+import { seed } from "./entities/type_establishments";
+import { connectToDb } from "./../connection";
 
-connection()
+connectToDb();
 seed();
