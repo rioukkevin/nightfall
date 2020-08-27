@@ -23,7 +23,7 @@ class ShareScreen extends React.Component<any, any> {
         super(props);
 
         this.state = {
-            firstname : 'init',
+            firstname : '',
             data: {
                 facebook: getFacebookDatas(),
                 twitter: getTwitterDatas(),
