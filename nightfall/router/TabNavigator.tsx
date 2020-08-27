@@ -7,7 +7,6 @@ import MapScreen from "../views/Map";
 import NewsScreen from "../views/News";
 import ShareScreen from "../views/Share";
 import { StyleSheet } from "react-native";
-import ScoresScreen from "../views/Scores";
 
 /**Component style */
 const style = StyleSheet.create({
