@@ -120,7 +120,7 @@ const HomeScreen = () => {
           actions={[
             {
               icon: 'account',
-              label: 'Account',
+              label: 'Mon compte',
               onPress: fadeInAccount,
             },
             {
@@ -131,6 +131,7 @@ const HomeScreen = () => {
           ]}
           onStateChange={onStateChange}
         />
+      </View>
     </LayoutHome>
   );
 };
