@@ -1,7 +1,6 @@
 import { IUser } from "../models/User";
 
-export default interface UserPoints {
+export default interface UserPointsDto {
     user: IUser;
     points: number;
-    period: string;
 }
