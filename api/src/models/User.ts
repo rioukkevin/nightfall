@@ -1,9 +1,9 @@
 import moment from "moment";
-import { Document, model, Model, QueryPopulateOptions, Schema } from "mongoose";
+import {Document, model, Model, QueryPopulateOptions, Schema} from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
-import { EstablishmentModel } from "./Establishment";
-import { TransactionModel } from "./Transaction";
-import { TypeEstablishmentModel } from "./Type_establishment";
+import {EstablishmentModel} from "./Establishment";
+import {TransactionModel} from "./Transaction";
+import {TypeEstablishmentModel} from "./Type_establishment";
 
 const UserSchema: Schema = new Schema({
     firstname: {

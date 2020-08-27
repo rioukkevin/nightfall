@@ -1,12 +1,12 @@
 import * as bcrypt from "bcrypt";
-import express, { Request, Response, Router } from "express";
+import express, {Request, Response, Router} from "express";
 import * as jwt from "jsonwebtoken";
 import passport from "passport";
 import CreateUserDto from "../dto/CreateUserDto";
 import LoginDto from "../dto/LoginDto";
-import { JWT_SECRET_KEY } from "../helpers/authentication.helper";
-import { PASSWORD_SALT_NUMBER } from "../helpers/password.helpers";
-import { IUser, UserModel } from "../models/User";
+import {JWT_SECRET_KEY} from "../helpers/authentication.helper";
+import {PASSWORD_SALT_NUMBER} from "../helpers/password.helpers";
+import {IUser, UserModel} from "../models/User";
 
 const authenticationRoutes: Router = express.Router();
 
@@ -64,7 +64,9 @@ authenticationRoutes.post("/signup", async (req: Request, res: Response) => {
     } else {
         //Create user model
         const user: IUser = {
-            ...createUserDto,
+            email: createUserDto.email,
+            firstname: createUserDto.firstname,
+            lastname: createUserDto.lastname,
             password: await bcrypt.hash(
                 createUserDto.password,
                 PASSWORD_SALT_NUMBER
