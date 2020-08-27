@@ -22,7 +22,7 @@ const MapScreen: FunctionComponent = () => {
     // update establishment list
     const onSearchUpdate = (query: string) => {
         setSearch(query)
-        setFilteredEstablishments(establishments.filter(el => el.name.includes(query)))
+        setFilteredEstablishments(establishments.filter(el => el.name.toLocaleLowerCase().includes(query.toLocaleLowerCase())))
     }
     //#region Fields
     /**

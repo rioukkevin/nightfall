@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./TabNavigator";
+import RootNavigator from "./RootNavigator";
 import React from "react";
 
 /**
@@ -7,7 +7,7 @@ import React from "react";
  */
 const Router = () => (
     <NavigationContainer>
-        <TabNavigator></TabNavigator>
+        <RootNavigator></RootNavigator>
     </NavigationContainer>
 );
 
