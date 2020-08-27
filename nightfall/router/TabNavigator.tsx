@@ -1,5 +1,5 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import React from "react";
+import React, { useState } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FlashScreen from "../views/Flash";
 import HomeScreen from "./HomeNavigator";
@@ -15,7 +15,7 @@ const style = StyleSheet.create({
         color: "white",
         paddingVertical: 4,
     }
-    
+
 });
 
 
@@ -25,62 +25,80 @@ const style = StyleSheet.create({
  * @param color Icon color
  */
 const getIcon = (iconName: string, color: string) => (
-    <MaterialCommunityIcons name={iconName} color={color} size={26}/>
+    <MaterialCommunityIcons name={iconName} color={color} size={26} />
 );
+
+
 
 const Tab = createMaterialBottomTabNavigator();
-const TabNavigator = () => (
-    <Tab.Navigator initialRouteName="Home" barStyle={style.tabBar} labeled={false}>
-        {/**Home screen */}
-        <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-                tabBarLabel: "Accueil",
-                tabBarIcon: ({ color }) => getIcon("home", color),
-            }}
-        ></Tab.Screen>
+class TabNavigator extends React.Component<any, any> {
 
-        {/**Map screen */}
-        <Tab.Screen
-            name="Map"
-            component={MapScreen}
-            options={{
-                tabBarLabel: "Carte",
-                tabBarIcon: ({ color }) => getIcon("map-search", color),
-            }}
-        ></Tab.Screen>
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            justConnected: true,
+        }
+    }
+    
+    componentDidMount(){
+        this.setState({
+            justConnected: false,
+        })
+    }
 
-        {/**News screen */}
-        <Tab.Screen
-            name="News"
-            component={NewsScreen}
-            options={{
-                tabBarLabel: "Actualités",
-                tabBarIcon: ({ color }) => getIcon("newspaper", color),
-            }}
-        ></Tab.Screen>
+    render = () => (
+        <Tab.Navigator initialRouteName="Home" barStyle={style.tabBar} labeled={false}>
+            {/**Home screen */}
+            <Tab.Screen
+                name="Home"
+                children={() => <HomeScreen justConnected={this.state.justConnected} />}
+                options={{
+                    tabBarLabel: "Accueil",
+                    tabBarIcon: ({ color }) => getIcon("home", color),
+                }}
+            ></Tab.Screen>
 
-        {/**Share screen */}
-        <Tab.Screen
-            name="Share"
-            component={ShareScreen}
-            options={{
-                tabBarLabel: "Partager",
-                tabBarIcon: ({ color }) => getIcon("share-variant", color),
-            }}
-        ></Tab.Screen>
+            {/**Map screen */}
+            <Tab.Screen
+                name="Map"
+                component={MapScreen}
+                options={{
+                    tabBarLabel: "Carte",
+                    tabBarIcon: ({ color }) => getIcon("map-search", color),
+                }}
+            ></Tab.Screen>
 
-        {/**Share screen */}
-        <Tab.Screen
-            name="Flash"
-            component={FlashScreen}
-            options={{
-                tabBarLabel: "QR Code",
-                tabBarIcon: ({ color }) => getIcon("camera-control", color),
-            }}
-        ></Tab.Screen>
-    </Tab.Navigator>
-);
+            {/**News screen */}
+            <Tab.Screen
+                name="News"
+                component={NewsScreen}
+                options={{
+                    tabBarLabel: "Actualités",
+                    tabBarIcon: ({ color }) => getIcon("newspaper", color),
+                }}
+            ></Tab.Screen>
+
+            {/**Share screen */}
+            <Tab.Screen
+                name="Share"
+                component={ShareScreen}
+                options={{
+                    tabBarLabel: "Partager",
+                    tabBarIcon: ({ color }) => getIcon("share-variant", color),
+                }}
+            ></Tab.Screen>
+
+            {/**Share screen */}
+            <Tab.Screen
+                name="Flash"
+                component={FlashScreen}
+                options={{
+                    tabBarLabel: "QR Code",
+                    tabBarIcon: ({ color }) => getIcon("camera-control", color),
+                }}
+            ></Tab.Screen>
+        </Tab.Navigator>
+    );
+}
 
 export default TabNavigator;
