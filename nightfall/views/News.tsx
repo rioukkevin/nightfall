@@ -27,17 +27,6 @@ const NewsScreen = () => {
     );
 };
 
-const lightTheme = {
-    ...DefaultTheme,
-    dark: false,
-    colors: {
-        ...DefaultTheme.colors,
-        text: '#FFFFFF',
-        primary: '#003348', // Brand color
-        accent: '#fea500', // Button background color
-    },
-};
-
 const styles = StyleSheet.create({
     view: {
         height: '100%',
