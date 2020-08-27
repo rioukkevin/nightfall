@@ -10,7 +10,6 @@ establishmentsRoutes.get('/', async (req: Request, res: Response) => {
     path: "establishment_type",
     model: TypeEstablishmentModel,
   } as QueryPopulateOptions);
-  console.log(establishments);
 
   res.json(establishments)
 });

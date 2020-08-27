@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View, Share, ShareContent, Linking, ImageBackground} from 'react-native';
 import { Text } from 'react-native-paper';
+import * as AuthService from '../services/auth';
 
 // @ts-ignore
 import BackgroubdImageImage from '../assets/background-image-dark.png';
@@ -22,14 +23,16 @@ class ShareScreen extends React.Component<any, any> {
         super(props);
 
         this.state = {
+            firstname : '',
             data: {
                 facebook: getFacebookDatas(),
                 twitter: getTwitterDatas(),
                 instagram: getInstagramDatas(),
             }
         }
+        this.loadUser();
     }
-
+    
     onShare = async (data: ShareContent) => {
         try {
             const result = await Share.share(data);
@@ -79,6 +82,12 @@ class ShareScreen extends React.Component<any, any> {
 
     };
 
+    loadUser = async () => {
+        const user = await AuthService.getAuthUser()
+        const firstname = user.firstname!
+        this.setState({ firstname : firstname.charAt(0).toUpperCase() + firstname.slice(1)  })
+    }
+
     render() {
 
         return (
@@ -86,7 +95,7 @@ class ShareScreen extends React.Component<any, any> {
             <ImageBackground source={BackgroubdImageImage} style={styles.image}>
 
             <View style={styles.view}>
-                <Text style={styles.title}>MONPSEUDO</Text>
+                <Text style={styles.title}>{ this.state.firstname }</Text>
                 <Text style={styles.subTitle}>Partage ton expérience sur les réseaux</Text>
 
                 <Surface onTouchEnd={this.shareFacebook} style={styles.item}>
