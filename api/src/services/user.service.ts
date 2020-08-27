@@ -1,40 +1,41 @@
 import moment from "moment";
-import { connectToDb } from "../database/connection";
-import UserPoints from "../dto/UserPoints";
-import { countPoints, UserModel } from "../models/User";
+import {countPoints, UserModel} from "../models/User";
+import RankingResultDto from "../dto/RankingResultDto";
 
+/**
+ * Get the ranking of the users
+ * @param period Period for which get the ranking
+ */
 const getRanking = async (
     period: moment.unitOfTime.StartOf
-): Promise<UserPoints[]> => {
-    
-    const result: UserPoints[] = [];
-    if (period) {
-        console.log("Je démarre");
+): Promise<RankingResultDto> => {
+    const result: RankingResultDto = {
+        period: period?.toString() ?? "month",
+        ranking: [],
+    };
 
-        //Get users
-        const users = await UserModel.find().exec();
+    //Get users
+    const users = await UserModel.find().exec();
 
-        console.log(`J'ai récupéré ${users.length} utilisateurs`);
+    //Get points
+    for (let index = 0; index < users.length; index++) {
+        const user = users[index];
 
-        //Get points
-        for (let index = 0; index < users.length; index++) {
-            const user = users[index];
-
-            console.log(
-                `Je calcul les points de ${user.lastname} ${user.firstname}`
-            );
-            result.push({
-                user: user,
-                points: await countPoints(user, period),
-                period: period?.toLowerCase() ?? "",
-            });
-        }
+        result.ranking.push({
+            user: user,
+            points: await countPoints(
+                user,
+                result.period as moment.unitOfTime.StartOf
+            ),
+        });
     }
 
-    console.log("Je termine");
+    //Sort
+    result.ranking = result.ranking
+        .sort((a, b) => a.points - b.points)
+        .reverse();
+
     return result;
 };
-connectToDb();
-getRanking("month").finally(() => {
-    console.log("Fin");
-});
+
+export {getRanking};
