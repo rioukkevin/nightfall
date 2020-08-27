@@ -5,9 +5,9 @@ import { PASSWORD_SALT_NUMBER } from "../../../helpers/password.helpers";
 
 const fakeUsers = async () => {
     const adminUser = new UserModel({
-        firstname: "admin",
-        lastname: "admin",
-        email: "admin@admin.fr",
+        firstname: "Victor",
+        lastname: "Delarue",
+        email: "v.delarue@nightfall.fr",
         password: await bcrypt.hash(
             "Not24get",
             PASSWORD_SALT_NUMBER
