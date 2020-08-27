@@ -2,8 +2,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FlashScreen from "../views/Flash";
-import HomeScreen from "../views/Home/Home";
-import HomePlusScreen from "../views/Home/HomePlus";
+import HomeScreen from "./HomeNavigator";
 import MapScreen from "../views/Map";
 import NewsScreen from "../views/News";
 import ShareScreen from "../views/Share";
@@ -43,16 +42,6 @@ const TabNavigator = () => (
             }}
         ></Tab.Screen>
 
-        {/**Score screen */}
-        <Tab.Screen
-            name="Scores"
-            component={ScoresScreen}
-            options={{
-                tabBarLabel: "Scores",
-                tabBarIcon: ({ color }) => getIcon("home", color),
-            }}
-        ></Tab.Screen>
-
         {/**Map screen */}
         <Tab.Screen
             name="Map"
@@ -69,7 +58,7 @@ const TabNavigator = () => (
             component={NewsScreen}
             options={{
                 tabBarLabel: "Actualités",
-                tabBarIcon: ({ color }) => getIcon("newspaper-variant", color),
+                tabBarIcon: ({ color }) => getIcon("newspaper", color),
             }}
         ></Tab.Screen>
 
