@@ -21,7 +21,7 @@ const HomeScreen = () => {
   const fadeAnimInfo = useRef(new Animated.Value(100)).current;
 
   const goRanking = () =>  {
-    navigation.navigate('Home', { screen: 'Scores' });
+    navigation.navigate('Root', { screen: 'Home', params: { screen: 'Scores' }});
   }
 
   const fadeInInfo = () => {
