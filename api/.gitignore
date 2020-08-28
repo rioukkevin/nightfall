@@ -1,3 +1,4 @@
 .env
+.expo/
 node_modules/
 npm-debug.log

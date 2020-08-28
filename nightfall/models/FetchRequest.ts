@@ -24,7 +24,9 @@ export default async function fetchRequest({ path, method, body }: { path: strin
                 return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).json(body).put().json();
                 break;
             case "POST":
-                return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).json(body).post().json();
+                if (body) 
+                    return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).json(body).post().json();
+                return wretch(Constants.manifest.extra.BASE_URL + path, reqParams).post().json();
                 break;
             case "GET":
             default:

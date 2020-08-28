@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import { Image, View, StyleSheet, Animated, AsyncStorage } from 'react-native';
 import * as AuthService from '../../services/auth';
 import { Modal, Surface, FAB, Button, Text, Snackbar } from 'react-native-paper';
@@ -14,17 +14,17 @@ import LogoImage from '../../assets/logo-nightfall.png';
 import CardsImage from '../../assets/cards.png';
 
 
-const HomeScreen = () => {
+const HomeScreen = (props: any) => {
   const navigation = useNavigation();
   const [open, setOpen] = React.useState(false);
   const [successLogin, setSuccessLogin] = React.useState(false);
 
   const fadeAnimInfo = useRef(new Animated.Value(100)).current;
 
-  const goRanking = () =>  {
-    navigation.navigate('Root', { screen: 'Home', params: { screen: 'Scores' }});
+  const goRanking = () => {
+    navigation.navigate('Root', { screen: 'Home', params: { screen: 'Scores' } });
   }
-  const dismiss = () =>  {
+  const dismiss = () => {
     console.log('That\'s the end boys')
   }
 
@@ -66,18 +66,22 @@ const HomeScreen = () => {
   let [countPointsLastYear, setCountPointsLastYear] = React.useState(0);
   let [firstname, setFirstname] = React.useState('');
 
-  React.useEffect( () => {
+  React.useEffect(() => {
     loadUser();
-    setSuccessLogin(true)
+    if (props.justConnected === true) {
+      setSuccessLogin(true)
 
-    setTimeout(() => {
-      setSuccessLogin(false)
-    }, 3000);
-  }, []);
+      setTimeout(() => {
+        setSuccessLogin(false)
+      }, 3000);
+    }
+
+
+  });
 
   const loadUser = async () => {
     try {
-      const user : any = await AuthService.getAuthUser()
+      const user: any = await AuthService.getAuthUser()
 
       setFirstname(user.firstname)
       setCountPointsLastMonth(user.countPointsLastMonth)
@@ -86,21 +90,23 @@ const HomeScreen = () => {
     } catch (err) {
       console.log(err);
     }
-    
-    
+
+
   }
 
-  const onStateChange = (state: { open: boolean}) => {
+  const onStateChange = (state: { open: boolean }) => {
     setOpen(state.open)
   }
 
   return (
     <LayoutHome>
       <View style={styles.container}>
-        <Animated.View style={[styles.overlayInfo,{ top: fadeAnimInfo.interpolate({
-          inputRange: [0,100],
-          outputRange: ['0%', '100%']
-        }), position: 'absolute' }]}>
+        <Animated.View style={[styles.overlayInfo, {
+          top: fadeAnimInfo.interpolate({
+            inputRange: [0, 100],
+            outputRange: ['0%', '100%']
+          }), position: 'absolute'
+        }]}>
           <Text>UTILISATION</Text>
           <Text>Thalassius vero ea tempestate praefectus praetorio praesens ipse quoque adrogantis ingenii,
           considerans
@@ -114,30 +120,32 @@ const HomeScreen = () => {
               ferebatur.</Text>
           <FAB icon="close" onPress={fadeOutInfo} style={styles.overlayClose} />
         </Animated.View>
-        <Animated.View style={[styles.overlayAccount,{ top: fadeAnimAccount.interpolate({
-          inputRange: [0,100],
-          outputRange: ['0%', '100%']
-        }), position: 'absolute' }]}>
+        <Animated.View style={[styles.overlayAccount, {
+          top: fadeAnimAccount.interpolate({
+            inputRange: [0, 100],
+            outputRange: ['0%', '100%']
+          }), position: 'absolute'
+        }]}>
           <View style={styles.container}>
             <Surface style={styles.bandeau}>
-              <Text style={{textTransform: 'uppercase', fontWeight: '700'}}>Acheter un autre jeu</Text>
+              <Text style={{ textTransform: 'uppercase', fontWeight: '700' }}>Acheter un autre jeu</Text>
               <Image style={styles.cards} source={CardsImage} />
             </Surface>
             <Text style={styles.title}>{firstname}</Text>
             <Surface style={styles.chartAccount}>
-              <Pie style={{}} value={countPointsLastYear ? countPointsLastYear : 0} max={12000} text="Annuel"/>
-              <Pie style={{}} value={countPointsLastMonth ? countPointsLastMonth : 0} max={1000} text="Mensuel"/>
+              <Pie style={{}} value={countPointsLastYear ? countPointsLastYear : 0} max={12000} text="Annuel" />
+              <Pie style={{}} value={countPointsLastMonth ? countPointsLastMonth : 0} max={1000} text="Mensuel" />
             </Surface>
           </View>
           <FAB icon="close" onPress={fadeOutAccount} style={styles.overlayClose} />
         </Animated.View>
         <Text style={styles.title}>{firstname}</Text>
-        <Pie style={styles.chart} value={countPointsLastMonth ? countPointsLastMonth : 0} max={1000} text="Mensuel"/>
+        <Pie style={styles.chart} value={countPointsLastMonth ? countPointsLastMonth : 0} max={1000} text="Mensuel" />
         <Image style={styles.logo} source={LogoImage} />
         <FAB.Group
-          fabStyle={styles.groupBtnAction}  
+          fabStyle={styles.groupBtnAction}
           visible={true}
-          theme={{colors:{text:'#000000'}}}
+          theme={{ colors: { text: '#000000' } }}
           style={styles.groupBtn}
           open={open}
           icon={open ? 'close' : 'information-outline'}
@@ -176,13 +184,13 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 10,
   },
-  groupBtnAction:{
+  groupBtnAction: {
     zIndex: 0,
   },
   chart: {
     marginTop: 40
   },
-  logo:{
+  logo: {
     position: 'absolute',
     bottom: 60,
     left: '50%',
@@ -191,7 +199,7 @@ const styles = StyleSheet.create({
     height: 80,
     zIndex: 10
   },
-  title:{
+  title: {
     textAlign: 'center',
     textTransform: 'uppercase',
     fontSize: 40,
@@ -208,7 +216,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     zIndex: 60
   },
-  overlayInfo:{
+  overlayInfo: {
     height: '100%',
     position: 'absolute',
     right: 0,
@@ -220,7 +228,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.8)',
     zIndex: 50
   },
-  overlayAccount:{
+  overlayAccount: {
     height: '100%',
     position: 'absolute',
     right: 0,
@@ -232,7 +240,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,1)',
     zIndex: 50
   },
-  chartAccount:{
+  chartAccount: {
     position: 'absolute',
     top: 300,
     left: 0,
@@ -242,7 +250,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly'
   },
-  bandeau:{
+  bandeau: {
     position: 'absolute',
     top: 30,
     left: 0,
