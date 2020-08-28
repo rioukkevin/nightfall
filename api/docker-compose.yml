@@ -6,8 +6,20 @@ services:
     build: .
     ports: 
       - '82:3000'
-    links:
-      - mongo  
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.nightfall.rule=Host(`nightfall.riou.pro`)"
+      - "traefik.http.routers.nightfall.entrypoints=web-secure"
+      - "traefik.http.routers.nightfall.tls=true"
+      - "traefik.http.routers.nightfall.tls.certresolver=ssl"
+      - "traefik.http.routers.nightfall-http.rule=Host(`nightfall.riou.pro`)"
+      - "traefik.http.routers.nightfall-http.entrypoints=web"
+      - "traefik.http.middlewares.https.redirectscheme.scheme=https"
+      - "traefik.http.routers.nightfall-http.middlewares=https@docker"
+      - "traefik.port=3000"
+  # links:
+  #   - mongo  
   # mongo:
   #   image: mongo
   #   ports: 
