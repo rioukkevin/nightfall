@@ -3,7 +3,7 @@ export default ({ config }: { config: any }) => {
     ...config,
     extra: {
       ...config.extra,
-      BASE_URL: "http://192.168.42.232:3000"
+      BASE_URL: "http://172.29.9.91:3000"
     }
   };
 };
