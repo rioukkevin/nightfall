@@ -8,18 +8,17 @@ import { Text } from "react-native-paper";
 interface IBarcodeProps {
     flash: string;
     callback: Function;
+    scanned: Boolean;
 }
 
 const Barcode: FC<IBarcodeProps> = (props) => {
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-    const [scanned, setScanned] = useState(false);
     const [loaded, setLoaded] = useState(false);
     const cameraRef = React.createRef<Camera>();
 
     const navigator = useNavigation();
     navigator.addListener("blur", () => {
         setLoaded(false)
-        setScanned(false) 
     })
     navigator.addListener("focus", () => {
         setLoaded(true)
@@ -36,11 +35,7 @@ const Barcode: FC<IBarcodeProps> = (props) => {
     }, []);
 
     const handleBarCodeScanned = (scanningResult: BarCodeScanningResult) => {
-        setScanned(true);
         props.callback(scanningResult)
-        setTimeout(() => {
-            setScanned(false) 
-        }, 1000);
     };
 
     if (hasPermission === null) {
@@ -55,7 +50,7 @@ const Barcode: FC<IBarcodeProps> = (props) => {
             ref={cameraRef}
             flashMode={props.flash}
             ratio="16:9"
-            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+            onBarCodeScanned={props.scanned ? undefined : handleBarCodeScanned}
             style={StyleSheet.absoluteFill}
         />
     );

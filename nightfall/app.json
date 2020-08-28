@@ -25,6 +25,7 @@
     "sdkVersion": "38.0.0",
     "extra": {
       "BASE_URL": "localhost:3000"
-    }
+    },
+    "description": ""
   }
 }

@@ -8,6 +8,8 @@ import { postTransaction } from '../services/flash';
 
 const FlashScreen = () => {
   const [flash, setFlash] = useState<string>('off')
+  const [scanned, setScanned] = useState<boolean>(false)
+  const [gettedNumberOfPoint, setGettedNumberOfPoint] = useState<number>(0)
 
   const fadeAnim = useRef(new Animated.Value(100)).current;
 
@@ -34,16 +36,25 @@ const FlashScreen = () => {
   }
 
   const onFlash = async (scanningResult: BarCodeScanningResult) => {
-    await postTransaction(scanningResult.data);
+    setScanned(true) ;
+    let result = await postTransaction(scanningResult.data);
+
+    console.log(result);
+    
+    setGettedNumberOfPoint(result.transaction[0].establishment_type.points)
+
     fadeIn()
   }
   const onNext = () => {
     fadeOut()
+    setTimeout(() => {
+            setScanned(false) 
+        }, 1000);
   }
 
   return (
     <View style={styles.view}>
-      <Scanner flash={flash} callback={onFlash} />
+      <Scanner flash={flash} callback={onFlash} scanned={scanned} />
       <Surface style={styles.flashButtonContainer}>
         <FAB icon="flash" onPress={toggleFlash} />
       </Surface>
@@ -54,7 +65,7 @@ const FlashScreen = () => {
         outputRange: ['0%', '100%']
       }), position: 'absolute' }]}>
         <Text style={styles.qrText}>Challenge réussi !</Text>
-        <Text style={styles.qrTextPoint}>+20</Text>
+    <Text style={styles.qrTextPoint}>+{gettedNumberOfPoint}</Text>
         <Text style={styles.qrText}>Points Nightfall</Text>
         <FAB icon="close" onPress={onNext} style={styles.qrOverlayClose} />
       </Animated.View>

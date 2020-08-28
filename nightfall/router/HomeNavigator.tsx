@@ -7,10 +7,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-function MyStack() {
+function MyStack(props: any) {
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="HomeScreen" >
+        {_ => <HomeScreen {..._} justConnected={props.justConnected} />}
+      </Stack.Screen>
       <Stack.Screen name="Scores" component={ScoresScreen} />
     </Stack.Navigator>
   );
