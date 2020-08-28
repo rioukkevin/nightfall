@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet } from "react-native";
-import { DataTable, Button, Title } from 'react-native-paper';
+import { DataTable, Button, Title, ActivityIndicator, Colors } from 'react-native-paper';
 import LayoutHome from "./Home/LayoutHome";
 import * as ScoreService from '../services/score';
 import ItemScore from '../components/ItemScore';
@@ -22,6 +22,7 @@ const ScoresScreen = () => {
   }
 
   const changePediod = async () => {
+    setScores([])
     setBtnDisabled(true)
     period === 'month' ? setPeriod('year') : setPeriod('month')
     await loadScores();
@@ -31,7 +32,8 @@ const ScoresScreen = () => {
    return (
     <LayoutHome>
       <Title>Top {top} {period === 'month' ? 'de l\'année' : 'du mois'}</Title>
-      <DataTable style={styles.container}>
+      { scores.length
+       ? <DataTable style={styles.container}>
         <DataTable.Header>
           <DataTable.Title>Utilisateur</DataTable.Title>
           <DataTable.Title numeric>Points</DataTable.Title>
@@ -40,6 +42,8 @@ const ScoresScreen = () => {
           return <ItemScore score={value}></ItemScore>
         })}
       </DataTable>
+      : <ActivityIndicator animating={true} color={Colors.red800} />
+      }
       <Button style={styles.button} disabled={btnDisabled} color='#fea500' mode="contained" onPress={() => changePediod() }>
         Voir le classement par {period === 'year' ? 'année' : 'mois'} 
       </Button>
